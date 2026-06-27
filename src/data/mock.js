@@ -81,3 +81,62 @@ export const businessProfile = {
   phone: '07123456780',
   tier: 'STARTER'
 };
+
+export const website = {
+  status: 'live',
+  url: 'mikesplumbing.leadanchor.site',
+  template: 'Trades Pro',
+  monthlyFee: 5,
+  setupFee: 149,
+  features: ['whatsapp_button', 'review_feed', 'contact_form', 'ai_chat', 'gbp_link'],
+  goLiveDate: '2025-03-12'
+};
+
+export const gbp = {
+  connected: true,
+  businessName: "Mike's Plumbing",
+  rating: 4.9,
+  reviewCount: 47,
+  reviewsThisMonth: 3,
+  chatButtonActive: true,
+  reserveWithGoogle: false,
+  reviewLink: 'g.page/mikesplumbing/review'
+};
+
+export const whatsapp = {
+  connected: true,
+  waMeLink: 'wa.me/12145550199',
+  activeWindows: [
+    { customer: 'Sarah T.', openedMins: 120, expiresHrs: 22 },
+    { customer: 'James W.', openedMins: 1320, expiresHrs: 2 },
+    { customer: 'Emma L.', status: 'closed', daysSince: 3 }
+  ],
+  templates: [
+    { name: 'Appointment Reminder', category: 'utility', status: 'approved' },
+    { name: 'Job Complete + Payment', category: 'utility', status: 'approved' },
+    { name: 'Deposit Confirmation', category: 'utility', status: 'approved' },
+    { name: 'Booking Confirmation', category: 'appointment', status: 'approved' },
+    { name: 'Promotional Offer', category: 'marketing', status: 'blocked_us' }
+  ]
+};
+
+export const aiConfig = {
+  assistantName: "Mike's Assistant",
+  tone: 'friendly',
+  capabilities: {
+    sendWebform: true,
+    answerFAQs: true,
+    collectContact: true,
+    checkAvailability: true,
+    sendDepositLink: true,
+    confirmPricing: false,
+    promiseArrivalTimes: false
+  },
+  handoffTriggers: {
+    humanRequest: true,
+    negativeSentiment: true,
+    lowConfidence: true,
+    alwaysHandoff: false
+  },
+  afterHoursMessage: "We're closed right now. Leave your details and we'll call back first thing tomorrow."
+};

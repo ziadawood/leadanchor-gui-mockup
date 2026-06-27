@@ -34,17 +34,28 @@ export const Welcome = () => {
   );
 };
 
+const OnboardingStepper = ({ current }) => (
+  <div className="flex items-center gap-1 mb-8 text-[10px] font-bold text-gray-400 uppercase tracking-widest overflow-x-auto hide-scrollbar whitespace-nowrap">
+    <span className={current >= 1 ? 'text-navy-900' : ''}>Setup</span>
+    <span>→</span>
+    <span className={current >= 2 ? 'text-navy-900' : ''}>Plan</span>
+    <span>→</span>
+    <span className={current >= 3 ? 'text-navy-900' : ''}>Website</span>
+    <span>→</span>
+    <span className={current >= 4 ? 'text-navy-900' : ''}>Google</span>
+    <span>→</span>
+    <span className={current >= 5 ? 'text-navy-900' : ''}>WhatsApp</span>
+    <span>→</span>
+    <span className={current >= 6 ? 'text-navy-900' : ''}>Go Live</span>
+  </div>
+);
+
 export const BusinessSetup = () => {
   const navigate = useNavigate();
-  const [step, setStep] = useState(1); // 1: Info, 2: Telnyx, 3: CCF
 
   return (
     <div className="min-h-screen bg-app flex flex-col p-6">
-      <div className="flex items-center gap-2 mb-8">
-        {[1, 2, 3, 4].map(s => (
-          <div key={s} className={`h-1 flex-1 rounded-full ${s <= 1 ? 'bg-navy-900' : 'bg-gray-200'}`} />
-        ))}
-      </div>
+      <OnboardingStepper current={1} />
       
       <h2 className="text-2xl font-heading font-bold text-navy-900 mb-6">Business Details</h2>
       
@@ -95,7 +106,8 @@ export const PlanSelection = () => {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-app p-6 flex flex-col">
-      <h2 className="text-2xl font-heading font-bold text-navy-900 mb-2 text-center">Choose your plan</h2>
+      <OnboardingStepper current={2} />
+      <h2 className="text-2xl font-heading font-bold text-navy-900 mb-2 text-center mt-2">Choose your plan</h2>
       <p className="text-gray-500 text-center mb-8">Upgrade or downgrade at any time.</p>
       
       <div className="flex overflow-x-auto gap-4 pb-4 snap-x">
@@ -117,7 +129,7 @@ export const PlanSelection = () => {
       
       <div className="mt-8 mb-4">
         <button 
-          onClick={() => navigate('/dashboard')}
+          onClick={() => navigate('/onboarding/website/intro')}
           className="w-full bg-emerald-500 text-white font-bold py-4 rounded-xl text-lg hover:bg-emerald-600 transition-colors"
         >
           Start 14-Day Free Trial

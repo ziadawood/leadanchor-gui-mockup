@@ -23,21 +23,30 @@ import { SettingsHome, PlanBilling, Integrations } from './screens/Settings';
 import { EmptyPipeline, ErrorState } from './screens/ErrorEmpty';
 import { ProfileEdit, NotificationsSettings, Templates, FAQ, Terms, Privacy } from './screens/Supplementary';
 
+import { WebsiteInterest, TemplatePicker, ContentBuilder, WebsiteLivePreview } from './screens/Website';
+import { GBPConnect, GBPProfilePreview, ReviewDashboard } from './screens/GoogleBusiness';
+import { WAConnect, WAWindowsExplainer, WAThreadView, WATemplateLibrary } from './screens/WhatsApp';
+import { AILiveView, WABookingBotView, AIConfig, AIHandoffScreen } from './screens/AIChatbot';
+
 const DemoMode = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [demoStep, setDemoStep] = useState(0);
 
   const demoPath = [
     { path: '/setup', name: 'Business Setup' },
     { path: '/plans', name: 'Plan Selection' },
+    { path: '/onboarding/website/intro', name: 'Website Interest' },
+    { path: '/onboarding/website/template', name: 'Template Picker' },
+    { path: '/onboarding/website/content', name: 'Content Builder' },
+    { path: '/onboarding/website/preview', name: 'Website Preview' },
+    { path: '/onboarding/gbp/connect', name: 'GBP Connect' },
+    { path: '/onboarding/gbp/preview', name: 'GBP Preview' },
+    { path: '/settings/integrations/whatsapp/connect', name: 'WA Connect' },
     { path: '/dashboard', name: 'Dashboard' },
-    { path: '/call-intercept', name: 'Live Call Intercept' },
-    { path: '/leads/detail/1', name: 'Lead Card Detail' },
-    { path: '/quote/1', name: 'Quote Composer' },
-    { path: '/invoice/1', name: 'Invoice / Payment' },
-    { path: '/review/1', name: 'Review Request' },
-    { path: '/dashboard', name: 'Dashboard (Updated)' }
+    { path: '/ai-dispatcher/live', name: 'AI Dispatcher (Live)' },
+    { path: '/ai-dispatcher/whatsapp-booking', name: 'WA Booking Bot' },
+    { path: '/settings/integrations/gbp/reviews', name: 'Review Dashboard' },
+    { path: '/dashboard', name: 'Dashboard (End)' }
   ];
 
   const handleNext = () => {
@@ -51,15 +60,23 @@ const DemoMode = () => {
     }
   };
 
+  const progress = Math.round(((demoStep + 1) / demoPath.length) * 100);
+
   return (
-    <div className="fixed bottom-20 right-4 z-[100] bg-navy-900 text-white p-3 rounded-full shadow-lg flex items-center gap-3 border-2 border-emerald-500">
-      <div className="flex flex-col">
-        <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Demo Mode</span>
-        <span className="text-xs">{demoPath[demoStep]?.name || 'Start Demo'}</span>
+    <div className="fixed bottom-20 right-4 z-[100] bg-navy-900 text-white p-3 rounded-full shadow-lg flex items-center gap-3 border-2 border-emerald-500 max-w-[280px]">
+      <div className="flex flex-col flex-1 w-full min-w-[150px]">
+        <div className="flex justify-between items-center mb-1">
+          <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Demo Mode</span>
+          <span className="text-[10px] text-gray-400">Step {demoStep + 1} of {demoPath.length}</span>
+        </div>
+        <span className="text-xs truncate mb-1">{demoPath[demoStep]?.name || 'Start Demo'}</span>
+        <div className="w-full bg-navy-700 h-1.5 rounded-full overflow-hidden">
+          <div className="bg-emerald-500 h-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
+        </div>
       </div>
       <button 
         onClick={handleNext}
-        className="bg-emerald-500 hover:bg-emerald-600 text-white p-2 rounded-full transition-colors flex items-center justify-center"
+        className="bg-emerald-500 hover:bg-emerald-600 text-white p-2 rounded-full transition-colors flex items-center justify-center shrink-0"
       >
         {demoStep === demoPath.length - 1 ? <CheckCircle className="w-5 h-5" /> : <FastForward className="w-5 h-5" />}
       </button>
@@ -74,6 +91,14 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/setup" element={<BusinessSetup />} />
         <Route path="/plans" element={<PlanSelection />} />
+        
+        {/* New Onboarding Flows */}
+        <Route path="/onboarding/website/intro" element={<WebsiteInterest />} />
+        <Route path="/onboarding/website/template" element={<TemplatePicker />} />
+        <Route path="/onboarding/website/content" element={<ContentBuilder />} />
+        <Route path="/onboarding/website/preview" element={<WebsiteLivePreview />} />
+        <Route path="/onboarding/gbp/connect" element={<GBPConnect />} />
+        <Route path="/onboarding/gbp/preview" element={<GBPProfilePreview />} />
         
         {/* Authenticated Routes */}
         <Route path="/dashboard" element={<AppShell><Dashboard /></AppShell>} />
@@ -101,10 +126,24 @@ function App() {
         <Route path="/settings/faq" element={<AppShell><FAQ /></AppShell>} />
         <Route path="/settings/terms" element={<AppShell><Terms /></AppShell>} />
         <Route path="/settings/privacy" element={<AppShell><Privacy /></AppShell>} />
+        
+        {/* New Integrations / Settings */}
+        <Route path="/settings/integrations/gbp/reviews" element={<AppShell><ReviewDashboard /></AppShell>} />
+        <Route path="/settings/integrations/whatsapp/connect" element={<AppShell><WAConnect /></AppShell>} />
+        <Route path="/settings/integrations/whatsapp/windows" element={<AppShell><WAWindowsExplainer /></AppShell>} />
+        <Route path="/settings/integrations/whatsapp/templates" element={<AppShell><WATemplateLibrary /></AppShell>} />
+        <Route path="/settings/ai-dispatcher/config" element={<AppShell><AIConfig /></AppShell>} />
+        
+        <Route path="/inbox/wa/:id" element={<AppShell><WAThreadView /></AppShell>} />
 
         <Route path="/call-intercept" element={<AppShell><LiveCallIntercept /></AppShell>} />
-        <Route path="/ai-dispatcher" element={<AppShell><AIDispatcherView /></AppShell>} />
         <Route path="/returning-caller" element={<AppShell><ReturningCallerView /></AppShell>} />
+        
+        {/* AI Chatbot Flows */}
+        <Route path="/ai-dispatcher" element={<Navigate to="/ai-dispatcher/live" replace />} />
+        <Route path="/ai-dispatcher/live" element={<AppShell><AILiveView /></AppShell>} />
+        <Route path="/ai-dispatcher/whatsapp-booking" element={<AppShell><WABookingBotView /></AppShell>} />
+        <Route path="/ai-dispatcher/handoff/:id" element={<AppShell><AIHandoffScreen /></AppShell>} />
         
         <Route path="/lifecycle/:id" element={<AppShell><MessageLifecycle /></AppShell>} />
         <Route path="/quote/:id" element={<AppShell><QuoteComposer /></AppShell>} />

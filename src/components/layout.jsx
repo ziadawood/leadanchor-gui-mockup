@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, Inbox, Calendar, LayoutDashboard, Settings, Bell, Anchor } from 'lucide-react';
+import { Home, Inbox, Calendar, LayoutDashboard, Settings, Bell, Anchor, Bot } from 'lucide-react';
 
 export const TopBar = () => {
   return (
@@ -25,10 +25,12 @@ export const TopBar = () => {
 };
 
 export const BottomNav = () => {
+  const isPro = true; // Hardcoded for mockup
   const navItems = [
-    { label: 'Home', icon: Home, path: '/home' },
+    { label: 'Home', icon: Home, path: '/dashboard' },
     { label: 'Leads', icon: LayoutDashboard, path: '/leads' },
     { label: 'Messages', icon: Inbox, path: '/messages' },
+    ...(isPro ? [{ label: 'AI', icon: Bot, path: '/ai-dispatcher/live' }] : []),
     { label: 'Calendar', icon: Calendar, path: '/calendar' },
     { label: 'Settings', icon: Settings, path: '/settings' },
   ];
