@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --navy-900: #0B2447;   /* Sidebar, nav, footer, primary text */
+    --navy-700: #19376D;   /* Hover / secondary navy, gradients */
+    --navy-500: #576CBC;   /* Accents, secondary buttons, links */
+    --emerald-500: #00D084; /* HIGH-CONVERSION ONLY: Save, New Lead, toggles */
+    --emerald-600: #00B873; /* Green hover/pressed */
+    --bg-app: #F8F9FA;
+    --bg-card: #FFFFFF;
+    --gray-500: #6B7280;   /* Muted text */
+    --gray-200: #E5E7EB;   /* Borders, dividers */
+    --amber-500: #F59E0B;  /* Warnings (CCF Android-only notice) */
+    --red-500: #EF4444;    /* Errors, missed/lost */
+  }
+
+  body {
+    @apply bg-app text-navy-900 font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold text-navy-900;
+  }
+}
