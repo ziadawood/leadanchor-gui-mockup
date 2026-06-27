@@ -19,7 +19,7 @@ export const MessageLifecycle = () => {
         <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg flex items-start gap-3 mb-6">
           <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
           <p className="text-xs text-blue-800">
-            <strong>Payment is EMAIL-PRIMARY.</strong> Invoice + Stripe link sent via email. 1-segment SMS nudge confirms delivery. Review + final payment = ONE clubbed RCS send (saves £0.28/mo).
+            <strong>Payment is EMAIL-PRIMARY.</strong> Invoice + Stripe link sent via email. 1-segment SMS nudge confirms delivery. Review + final payment = ONE clubbed RCS send (saves $0.28/mo).
           </p>
         </div>
 
@@ -44,7 +44,7 @@ export const MessageLifecycle = () => {
               <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Sent</span>
             </div>
             <p className="text-xs text-gray-500 mb-2">10 mins ago</p>
-            <MessagePreview channel="RCS" direction="outbound" text="Here is your quote for £120..." />
+            <MessagePreview channel="RCS" direction="outbound" text="Here is your quote for $120..." />
           </div>
 
           <div className="relative opacity-60">
@@ -100,17 +100,17 @@ export const QuoteComposer = () => {
           <div className="space-y-3 mb-4">
             <div className="flex justify-between items-center">
               <input type="text" value="Labour" className="bg-gray-50 p-2 rounded text-sm w-1/2" readOnly />
-              <input type="text" value="£80.00" className="bg-gray-50 p-2 rounded text-sm w-1/3 text-right" readOnly />
+              <input type="text" value="$80.00" className="bg-gray-50 p-2 rounded text-sm w-1/3 text-right" readOnly />
             </div>
             <div className="flex justify-between items-center">
               <input type="text" value="Parts" className="bg-gray-50 p-2 rounded text-sm w-1/2" readOnly />
-              <input type="text" value="£40.00" className="bg-gray-50 p-2 rounded text-sm w-1/3 text-right" readOnly />
+              <input type="text" value="$40.00" className="bg-gray-50 p-2 rounded text-sm w-1/3 text-right" readOnly />
             </div>
           </div>
 
           <div className="flex justify-between items-center border-t border-gray-100 pt-4 mb-4">
             <span className="font-bold text-navy-900">Total</span>
-            <span className="text-xl font-bold text-emerald-600">£120.00</span>
+            <span className="text-xl font-bold text-emerald-600">$120.00</span>
           </div>
 
           <div className="mb-2">
@@ -124,7 +124,7 @@ export const QuoteComposer = () => {
 
         <div className="mb-6">
           <p className="text-xs font-bold text-gray-500 uppercase mb-2">Message Preview</p>
-          <MessagePreview channel="RCS" direction="outbound" text="Hi James! Here is your quote from Mike's HVAC for £120.00. Tap here to view and accept: [Link]" />
+          <MessagePreview channel="RCS" direction="outbound" text="Hi James! Here is your quote from Mike's HVAC for $120.00. Tap here to view and accept: [Link]" />
         </div>
 
         <button 
@@ -161,7 +161,7 @@ export const InvoicePayment = () => {
           
           <div className="flex justify-between items-center border-t border-b border-gray-100 py-4 mb-4">
             <span className="font-bold text-navy-900">Amount Due</span>
-            <span className="text-2xl font-bold text-navy-900">£120.00</span>
+            <span className="text-2xl font-bold text-navy-900">$120.00</span>
           </div>
 
           <div>
@@ -174,13 +174,13 @@ export const InvoicePayment = () => {
           <p className="text-xs font-bold text-gray-500 uppercase mb-2">Email Preview</p>
           <div className="bg-white border border-gray-200 rounded-lg p-3 text-sm shadow-sm mb-2">
             <p className="font-semibold border-b border-gray-100 pb-2 mb-2">Subject: Invoice INV-1024 from Mike's HVAC</p>
-            <p className="text-gray-600">Hi James, here is your invoice for £120.00. You can securely pay online here: [Stripe Link]</p>
+            <p className="text-gray-600">Hi James, here is your invoice for $120.00. You can securely pay online here: [Stripe Link]</p>
           </div>
         </div>
 
         <div className="mb-6">
           <p className="text-xs font-bold text-gray-500 uppercase mb-2">SMS Nudge Preview</p>
-          <MessagePreview channel="SMS" direction="outbound" text="Mike's HVAC: We've emailed your invoice for £120.00. Reply if you have questions! 📧" />
+          <MessagePreview channel="SMS" direction="outbound" text="Mike's HVAC: We've emailed your invoice for $120.00. Reply if you have questions! 📧" />
         </div>
 
         <button 
@@ -227,7 +227,7 @@ export const ReviewRequest = () => {
           <p className="text-sm text-navy-900 leading-relaxed mb-4">
             "Thanks for choosing Mike's HVAC! ⭐ We'd love a review:<br/>
             [Leave Google Review →]<br/><br/>
-            Also, your remaining balance of £120 is due:<br/>
+            Also, your remaining balance of $120 is due:<br/>
             [Pay Now →]"
           </p>
           <div className="bg-blue-50 text-blue-800 text-[10px] p-2 rounded">

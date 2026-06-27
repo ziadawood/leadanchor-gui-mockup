@@ -57,7 +57,7 @@ export const Dashboard = () => {
             <div className="p-3 flex items-center gap-3">
               <div className="bg-emerald-100 p-2 rounded-full text-emerald-500"><CheckCircle className="w-4 h-4" /></div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-navy-900">Payment received — £120</p>
+                <p className="text-sm font-semibold text-navy-900">Payment received — $120</p>
                 <p className="text-xs text-gray-500">Sarah T. • 1 hour ago</p>
               </div>
             </div>

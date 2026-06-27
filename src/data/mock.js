@@ -1,19 +1,19 @@
 export const kpis = {
   callsCaptured: { value: 12, label: 'Calls Captured', period: 'This week', trend: '+2', positive: true },
-  revenueRecovered: { value: '£840', label: 'Revenue Recovered', period: 'This month', trend: '+12%', positive: true },
+  revenueRecovered: { value: '$840', label: 'Revenue Recovered', period: 'This month', trend: '+12%', positive: true },
   leadsActive: { value: 7, label: 'Leads in Pipeline', period: 'Active', trend: '+1', positive: true },
   reviewsEarned: { value: 3, label: 'Reviews Earned', period: 'This month', trend: '+3', positive: true },
 };
 
 export const leads = [
   { id: '1', name: 'James W.', initials: 'JW', phone: '07123456789', stage: 'NEW', channel: 'RCS', time: '14 min ago', callType: 'missed', lastMessage: 'Need a quote for boiler service', value: null, returning: false, source: 'Missed Call' },
-  { id: '2', name: 'Sarah T.', initials: 'ST', phone: '07234567890', stage: 'QUOTED', channel: 'WhatsApp', time: '2 hours ago', callType: 'answered', lastMessage: 'Thanks, I will review the quote.', value: '£120', returning: true, source: 'Missed Call' },
-  { id: '3', name: 'Mike P.', initials: 'MP', phone: '07345678901', stage: 'AWAITING PAYMENT', channel: 'Email', time: '1 day ago', callType: 'answered', lastMessage: 'Invoice #1024 sent', value: '£350', returning: false, source: 'Website' },
-  { id: '4', name: 'Emma L.', initials: 'EL', phone: '07456789012', stage: 'COMPLETE', channel: 'RCS', time: '2 days ago', callType: 'missed', lastMessage: 'Review request sent', value: '£85', returning: false, source: 'Missed Call' },
+  { id: '2', name: 'Sarah T.', initials: 'ST', phone: '07234567890', stage: 'QUOTED', channel: 'WhatsApp', time: '2 hours ago', callType: 'answered', lastMessage: 'Thanks, I will review the quote.', value: '$120', returning: true, source: 'Missed Call' },
+  { id: '3', name: 'Mike P.', initials: 'MP', phone: '07345678901', stage: 'AWAITING PAYMENT', channel: 'Email', time: '1 day ago', callType: 'answered', lastMessage: 'Invoice #1024 sent', value: '$350', returning: false, source: 'Website' },
+  { id: '4', name: 'Emma L.', initials: 'EL', phone: '07456789012', stage: 'COMPLETE', channel: 'RCS', time: '2 days ago', callType: 'missed', lastMessage: 'Review request sent', value: '$85', returning: false, source: 'Missed Call' },
   { id: '5', name: 'Tom R.', initials: 'TR', phone: '07567890123', stage: 'LOST', channel: 'SMS', time: '1 week ago', callType: 'missed', lastMessage: 'Went with another company', value: null, returning: false, source: 'Walk-in' },
   { id: '6', name: 'David B.', initials: 'DB', phone: '07678901234', stage: 'NEW', channel: 'WhatsApp', time: '1 hour ago', callType: 'missed', lastMessage: 'Webform link sent', value: null, returning: false, source: 'Missed Call' },
-  { id: '7', name: 'Chloe S.', initials: 'CS', phone: '07789012345', stage: 'QUOTED', channel: 'Email', time: '3 hours ago', callType: 'answered', lastMessage: 'Quote sent for AC repair', value: '£250', returning: false, source: 'Referral' },
-  { id: '8', name: 'Liam K.', initials: 'LK', phone: '07890123456', stage: 'AWAITING PAYMENT', channel: 'RCS', time: '5 hours ago', callType: 'answered', lastMessage: 'Invoice #1025 sent', value: '£150', returning: true, source: 'Missed Call' }
+  { id: '7', name: 'Chloe S.', initials: 'CS', phone: '07789012345', stage: 'QUOTED', channel: 'Email', time: '3 hours ago', callType: 'answered', lastMessage: 'Quote sent for AC repair', value: '$250', returning: false, source: 'Referral' },
+  { id: '8', name: 'Liam K.', initials: 'LK', phone: '07890123456', stage: 'AWAITING PAYMENT', channel: 'RCS', time: '5 hours ago', callType: 'answered', lastMessage: 'Invoice #1025 sent', value: '$150', returning: true, source: 'Missed Call' }
 ];
 
 export const messages = [

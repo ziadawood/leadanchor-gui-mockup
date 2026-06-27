@@ -76,10 +76,10 @@ export const DepositPayment = () => {
           
           <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4 inline-block mx-auto min-w-[200px]">
             <p className="text-xs font-bold text-gray-500 uppercase mb-1">Deposit Required</p>
-            <p className="text-3xl font-bold text-navy-900">£10.00</p>
+            <p className="text-3xl font-bold text-navy-900">$10.00</p>
           </div>
           
-          <p className="text-xs font-medium text-gray-500">Full amount: £65 — Deposit secures the slot</p>
+          <p className="text-xs font-medium text-gray-500">Full amount: $65 — Deposit secures the slot</p>
         </div>
 
         <button 

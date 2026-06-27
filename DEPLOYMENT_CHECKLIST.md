@@ -8,7 +8,7 @@
 - [x] npx serve dist tested locally
 
 ## Deploy
-- [ ] GitHub repo created and pushed
+- [x] GitHub repo created and pushed
 - [ ] Vercel project linked to repo
 - [ ] Build settings confirmed (Vite / dist)
 - [ ] Production URL live and shared with team
