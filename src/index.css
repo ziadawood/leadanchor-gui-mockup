@@ -17,6 +17,90 @@
     --red-500: #EF4444;    /* Errors, missed/lost */
   }
 
+  [data-theme="starter"] {
+    /* Primary surfaces */
+    --theme-nav-bg:        #0B2447;   /* deep navy — sidebar + top bar */
+    --theme-nav-text:      #FFFFFF;
+    --theme-nav-accent:    #576CBC;   /* slate blue — active tab, icons */
+    --theme-nav-hover:     #19376D;   /* navy-700 hover */
+
+    /* Plan badge */
+    --theme-badge-bg:      #19376D;
+    --theme-badge-text:    #A8C4F0;
+    --theme-badge-label:   'STARTER';
+
+    /* Primary CTA — money/conversion only */
+    --theme-cta-bg:        #00D084;   /* emerald — unchanged */
+    --theme-cta-text:      #002B1A;
+
+    /* Accent for links, secondary buttons */
+    --theme-accent:        #576CBC;
+    --theme-accent-hover:  #19376D;
+
+    /* Card headers */
+    --theme-card-header-bg: #F0F4FF;  /* soft navy tint */
+    --theme-card-border:    #D0DBEF;
+
+    /* KPI trend positive */
+    --theme-trend-up:      #00D084;
+    --theme-trend-down:    #EF4444;
+
+    /* Feature lock badge */
+    --theme-lock-bg:       #FEF3C7;
+    --theme-lock-text:     #92400E;
+
+    /* Page background */
+    --theme-bg-app:        #F8F9FA;
+    --theme-bg-card:       #FFFFFF;
+
+    /* Onboarding stepper active step */
+    --theme-step-active:   #0B2447;
+    --theme-step-done:     #00D084;
+    --theme-step-pending:  #D0DBEF;
+  }
+
+  [data-theme="pro"] {
+    /* Primary surfaces */
+    --theme-nav-bg:        linear-gradient(135deg, #063320, #00B873);
+    --theme-nav-text:      #FFFFFF;
+    --theme-nav-accent:    #CCFCE7;   /* light emerald — active tab */
+    --theme-nav-hover:     #00B873;
+
+    /* Plan badge */
+    --theme-badge-bg:      #00D084;
+    --theme-badge-text:    #002B1A;
+    --theme-badge-label:   'PRO';
+
+    /* Primary CTA */
+    --theme-cta-bg:        #00D084;
+    --theme-cta-text:      #002B1A;
+
+    /* Accent */
+    --theme-accent:        #00B873;
+    --theme-accent-hover:  #008F5A;
+
+    /* Card headers */
+    --theme-card-header-bg: #F0FDF4;  /* soft emerald tint */
+    --theme-card-border:    #86EFAC;
+
+    /* KPI trend */
+    --theme-trend-up:      #00D084;
+    --theme-trend-down:    #EF4444;
+
+    /* No lock badges — all features visible */
+    --theme-lock-bg:       transparent;
+    --theme-lock-text:     transparent;
+
+    /* Page background */
+    --theme-bg-app:        #F0FDF4;   /* very light emerald tint */
+    --theme-bg-card:       #FFFFFF;
+
+    /* Stepper */
+    --theme-step-active:   #00D084;
+    --theme-step-done:     #00B873;
+    --theme-step-pending:  #BBF7D0;
+  }
+
   body {
     @apply bg-app text-navy-900 font-sans antialiased;
   }

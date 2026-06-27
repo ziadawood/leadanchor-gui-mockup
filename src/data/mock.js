@@ -140,3 +140,15 @@ export const aiConfig = {
   },
   afterHoursMessage: "We're closed right now. Leave your details and we'll call back first thing tomorrow."
 };
+
+export const seo = {
+  healthScore: 82,
+  competitors: [
+    { name: "Joe's HVAC", ranking: 1, score: 95 },
+    { name: "Mike's HVAC (You)", ranking: 2, score: 82 },
+    { name: "Elite Air", ranking: 3, score: 78 }
+  ],
+  keywords: ["HVAC repair", "AC installation", "heating service"],
+  citations: { total: 45, consistent: 42 },
+  backlinks: 128
+};

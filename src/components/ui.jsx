@@ -1,13 +1,14 @@
 import React from 'react';
 import { ArrowUpRight, ArrowDownRight, Phone, CheckCircle, MessageSquare, Lock } from 'lucide-react';
+import { useTheme, THEMES } from '../context/ThemeContext';
 
 export const KPICard = ({ label, value, trend, positive, period }) => {
   return (
-    <div className="bg-card p-4 rounded-xl shadow-sm border border-gray-200">
+    <div className="bg-[var(--theme-card-header-bg)] p-4 rounded-xl shadow-sm border border-[var(--theme-card-border)]">
       <div className="text-gray-500 text-xs font-medium mb-1">{label}</div>
-      <div className="text-2xl font-bold text-navy-900 mb-2">{value}</div>
+      <div className="text-2xl font-bold text-[var(--theme-nav-bg)] mb-2">{value}</div>
       <div className="flex items-center gap-2">
-        <div className={`flex items-center text-xs font-medium ${positive ? 'text-emerald-500' : 'text-red-500'}`}>
+        <div className={`flex items-center text-xs font-medium ${positive ? 'text-[var(--theme-trend-up)]' : 'text-[var(--theme-trend-down)]'}`}>
           {positive ? <ArrowUpRight className="w-3 h-3 mr-0.5" /> : <ArrowDownRight className="w-3 h-3 mr-0.5" />}
           {trend}
         </div>
@@ -34,10 +35,10 @@ export const ChannelTag = ({ channel }) => {
 
 export const LeadCard = ({ name, stage, channel, time, initials, callType, lastMessage, value }) => {
   return (
-    <div className="bg-card p-3 rounded-lg shadow-sm border border-gray-200 mb-2 cursor-pointer hover:border-navy-500 transition-colors">
+    <div className="bg-[var(--theme-bg-card)] p-3 rounded-lg shadow-sm border border-gray-200 mb-2 cursor-pointer hover:border-[var(--theme-accent)] transition-colors group">
       <div className="flex justify-between items-start mb-2">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-navy-500 text-white flex items-center justify-center font-bold text-xs">
+          <div className="w-8 h-8 rounded-full bg-[var(--theme-nav-bg)] text-white flex items-center justify-center font-bold text-xs group-hover:bg-[var(--theme-accent)] transition-colors">
             {initials}
           </div>
           <div>
@@ -116,32 +117,54 @@ export const AIMessageBubble = ({ sender, channel, text, timestamp }) => {
 };
 
 export const FeatureLockBadge = ({ feature }) => {
+  const { theme } = useTheme();
+  
+  if (theme === THEMES.PRO) {
+    return (
+      <div className="flex items-center gap-1 text-xs font-semibold text-[#00B873] bg-[#F0FDF4] px-2 py-1 rounded">
+        <CheckCircle className="w-3 h-3" />
+        {feature} (Included)
+      </div>
+    );
+  }
+
   return (
-    <div className="flex items-center gap-1 text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded">
-      <Lock className="w-3 h-3" />
-      {feature} (Pro)
+    <div className="flex items-center gap-1 text-[10px] font-semibold text-[var(--theme-lock-text)] bg-[var(--theme-lock-bg)] px-2 py-1 rounded">
+      <span>🔒</span>
+      {feature} — Upgrade
     </div>
   );
 };
 
-export const PlanCard = ({ tier, price, recommended, features }) => {
+export const PlanCard = ({ tier, price, recommended, features, selected, onSelect }) => {
+  const { theme } = useTheme();
+  const isSelected = selected || (theme === THEMES.STARTER && tier === 'Starter') || (theme === THEMES.PRO && tier === 'Pro');
+  
+  let borderClass = 'border-gray-200';
+  if (isSelected) {
+    borderClass = tier === 'Starter' ? 'border-[var(--theme-nav-bg)] shadow-md' : 'border-[var(--theme-cta-bg)] shadow-md';
+  }
+
   return (
-    <div className={`relative bg-card rounded-2xl p-6 border-2 ${recommended ? 'border-emerald-500 shadow-md' : 'border-gray-200'} flex-1 min-w-[280px]`}>
+    <div 
+      onClick={onSelect}
+      className={`relative bg-[var(--theme-bg-card)] rounded-2xl p-6 border-2 ${borderClass} flex-1 min-w-[280px] cursor-pointer`}
+    >
       {recommended && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--theme-cta-bg)] text-[var(--theme-cta-text)] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
           Recommended
         </div>
       )}
-      <h3 className="font-heading font-bold text-xl text-navy-900 mb-1">{tier}</h3>
+      <h3 className="font-heading font-bold text-xl text-[var(--theme-nav-bg)] mb-1">{tier}</h3>
       <div className="mb-4">
-        <span className="text-3xl font-bold text-navy-900">${price}</span>
+        <span className="text-3xl font-bold text-[var(--theme-nav-bg)]">${price}</span>
         <span className="text-gray-500 text-sm">/mo</span>
       </div>
       <ul className="space-y-3 mb-6">
         {features.map((f, i) => (
           <li key={i} className="flex items-start gap-2 text-sm">
             {f.included ? (
-              <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+              <CheckCircle className="w-4 h-4 text-[var(--theme-cta-bg)] shrink-0 mt-0.5" />
             ) : (
               <Lock className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
             )}
@@ -149,8 +172,8 @@ export const PlanCard = ({ tier, price, recommended, features }) => {
           </li>
         ))}
       </ul>
-      <button className={`w-full py-3 rounded-lg font-bold transition-colors ${recommended ? 'bg-emerald-500 hover:bg-emerald-600 text-white' : 'bg-navy-100 hover:bg-navy-200 text-navy-700'}`}>
-        Select {tier}
+      <button className={`w-full py-3 rounded-lg font-bold transition-colors ${isSelected ? 'bg-[var(--theme-cta-bg)] text-[var(--theme-cta-text)]' : 'bg-gray-100 hover:bg-gray-200 text-gray-700'}`}>
+        {isSelected ? 'Current Plan' : `Select ${tier}`}
       </button>
     </div>
   );

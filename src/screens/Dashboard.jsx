@@ -11,10 +11,10 @@ export const Dashboard = () => {
   return (
     <div className="p-4 bg-app min-h-full">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-heading font-bold text-navy-900">Dashboard</h1>
+        <h1 className="text-2xl font-heading font-bold text-[var(--theme-nav-bg)]">Dashboard</h1>
         <button 
           onClick={() => navigate('/analytics')}
-          className="text-navy-500 text-sm font-semibold flex items-center gap-1"
+          className="text-[var(--theme-accent)] text-sm font-semibold flex items-center gap-1"
         >
           View Analytics <ArrowRight className="w-4 h-4" />
         </button>
@@ -28,28 +28,28 @@ export const Dashboard = () => {
       </div>
 
       <div className="mb-6">
-        <h2 className="text-lg font-heading font-bold text-navy-900 mb-3">Quick Actions</h2>
+        <h2 className="text-lg font-heading font-bold text-[var(--theme-nav-bg)] mb-3">Quick Actions</h2>
         <div className="flex gap-3 overflow-x-auto pb-2">
-          <button onClick={() => navigate('/leads/new')} className="bg-emerald-500 text-white p-3 rounded-xl flex-shrink-0 flex items-center gap-2 font-bold text-sm shadow-sm">
+          <button onClick={() => navigate('/leads/new')} className="bg-[var(--theme-cta-bg)] text-[var(--theme-cta-text)] p-3 rounded-xl flex-shrink-0 flex items-center gap-2 font-bold text-sm shadow-sm">
             <Plus className="w-4 h-4" /> New Lead
           </button>
-          <button onClick={() => navigate('/leads')} className="bg-white border border-gray-200 text-navy-700 p-3 rounded-xl flex-shrink-0 flex items-center gap-2 font-bold text-sm shadow-sm">
+          <button onClick={() => navigate('/leads')} className="bg-white border border-gray-200 text-gray-700 p-3 rounded-xl flex-shrink-0 flex items-center gap-2 font-bold text-sm shadow-sm">
             <FileText className="w-4 h-4" /> Send Invoice
           </button>
-          <button onClick={() => navigate('/leads')} className="bg-white border border-gray-200 text-navy-700 p-3 rounded-xl flex-shrink-0 flex items-center gap-2 font-bold text-sm shadow-sm">
+          <button onClick={() => navigate('/leads')} className="bg-white border border-gray-200 text-gray-700 p-3 rounded-xl flex-shrink-0 flex items-center gap-2 font-bold text-sm shadow-sm">
             <Star className="w-4 h-4 text-amber-400" /> Request Review
           </button>
         </div>
       </div>
 
       <div>
-        <h2 className="text-lg font-heading font-bold text-navy-900 mb-3">Recent Activity</h2>
+        <h2 className="text-lg font-heading font-bold text-[var(--theme-nav-bg)] mb-3">Recent Activity</h2>
         <div className="bg-card rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           <div className="divide-y divide-gray-100">
             <div className="p-3 flex items-center gap-3 cursor-pointer hover:bg-gray-50" onClick={() => navigate('/leads/detail/1')}>
               <div className="bg-red-100 p-2 rounded-full text-red-500"><Phone className="w-4 h-4" /></div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-navy-900">Missed call — James W.</p>
+                <p className="text-sm font-semibold text-[var(--theme-nav-bg)]">Missed call — James W.</p>
                 <p className="text-xs text-gray-500">2 min ago</p>
               </div>
               <ArrowRight className="w-4 h-4 text-gray-400" />
@@ -57,21 +57,21 @@ export const Dashboard = () => {
             <div className="p-3 flex items-center gap-3">
               <div className="bg-emerald-100 p-2 rounded-full text-emerald-500"><CheckCircle className="w-4 h-4" /></div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-navy-900">Payment received — $120</p>
+                <p className="text-sm font-semibold text-[var(--theme-nav-bg)]">Payment received — $120</p>
                 <p className="text-xs text-gray-500">Sarah T. • 1 hour ago</p>
               </div>
             </div>
             <div className="p-3 flex items-center gap-3">
               <div className="bg-amber-100 p-2 rounded-full text-amber-500"><Star className="w-4 h-4" /></div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-navy-900">New 5★ review</p>
+                <p className="text-sm font-semibold text-[var(--theme-nav-bg)]">New 5★ review</p>
                 <p className="text-xs text-gray-500">Mike P. • "Amazing work!"</p>
               </div>
             </div>
             <div className="p-3 flex items-center gap-3">
               <div className="bg-navy-100 p-2 rounded-full text-navy-500"><MessageSquare className="w-4 h-4" /></div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-navy-900">AI Dispatcher replied</p>
+                <p className="text-sm font-semibold text-[var(--theme-nav-bg)]">AI Dispatcher replied</p>
                 <p className="text-xs text-gray-500">Emma L. • Webform sent</p>
               </div>
             </div>
@@ -110,7 +110,7 @@ export const Analytics = () => {
 
   return (
     <div className="p-4 bg-app min-h-full pb-10">
-      <h1 className="text-2xl font-heading font-bold text-navy-900 mb-6">Analytics</h1>
+      <h1 className="text-2xl font-heading font-bold text-[var(--theme-nav-bg)] mb-6">Analytics</h1>
       
       <div className="bg-card p-4 rounded-xl shadow-sm border border-gray-200 mb-6">
         <h3 className="text-sm font-bold text-gray-700 mb-4">Calls This Week</h3>
@@ -120,7 +120,7 @@ export const Analytics = () => {
               <XAxis dataKey="name" fontSize={10} axisLine={false} tickLine={false} />
               <YAxis fontSize={10} axisLine={false} tickLine={false} />
               <Tooltip cursor={{fill: '#F3F4F6'}} />
-              <Bar dataKey="calls" fill="var(--navy-500)" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="calls" fill="var(--theme-accent)" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>

@@ -26,8 +26,8 @@ export default {
           200: 'var(--gray-200)',
           500: 'var(--gray-500)',
         },
-        app: 'var(--bg-app)',
-        card: 'var(--bg-card)',
+        app: 'var(--theme-bg-app)',
+        card: 'var(--theme-bg-card)',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

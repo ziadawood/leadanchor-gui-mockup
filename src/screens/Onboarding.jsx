@@ -9,8 +9,8 @@ export const Welcome = () => {
   return (
     <div className="h-screen bg-app flex flex-col items-center justify-center p-6">
       <div className="flex flex-col items-center mb-8">
-        <Anchor className="w-16 h-16 text-navy-900 mb-4" />
-        <h1 className="text-4xl font-heading font-bold text-navy-900 mb-2">
+        <Anchor className="w-16 h-16 text-[var(--theme-nav-bg)] mb-4" />
+        <h1 className="text-4xl font-heading font-bold text-[var(--theme-nav-bg)] mb-2">
           Lead<span className="text-gray-500">Anchor</span>
         </h1>
         {/* REPLACE WITH FINAL LOGO */}
@@ -19,7 +19,7 @@ export const Welcome = () => {
       
       <button 
         onClick={() => navigate('/setup')}
-        className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-xl text-lg mb-4 transition-colors shadow-md"
+        className="w-full bg-[var(--theme-cta-bg)] hover:bg-[var(--theme-cta-bg)] text-white font-bold py-4 rounded-xl text-lg mb-4 transition-colors shadow-md"
       >
         Get Started
       </button>
@@ -35,18 +35,22 @@ export const Welcome = () => {
 };
 
 const OnboardingStepper = ({ current }) => (
-  <div className="flex items-center gap-1 mb-8 text-[10px] font-bold text-gray-400 uppercase tracking-widest overflow-x-auto hide-scrollbar whitespace-nowrap">
-    <span className={current >= 1 ? 'text-navy-900' : ''}>Setup</span>
+  <div className="flex items-center gap-1 mb-8 text-[10px] font-bold text-gray-400 uppercase tracking-widest overflow-x-auto hide-scrollbar whitespace-nowrap pb-2">
+    <span className={current >= 1 ? 'text-[var(--theme-nav-bg)]' : ''}>Setup</span>
     <span>→</span>
-    <span className={current >= 2 ? 'text-navy-900' : ''}>Plan</span>
+    <span className={current >= 2 ? 'text-[var(--theme-nav-bg)]' : ''}>Plan</span>
     <span>→</span>
-    <span className={current >= 3 ? 'text-navy-900' : ''}>Website</span>
+    <span className={current >= 3 ? 'text-[var(--theme-nav-bg)]' : ''}>Website</span>
     <span>→</span>
-    <span className={current >= 4 ? 'text-navy-900' : ''}>Google</span>
+    <span className={current >= 4 ? 'text-[var(--theme-nav-bg)]' : ''}>SEO</span>
     <span>→</span>
-    <span className={current >= 5 ? 'text-navy-900' : ''}>WhatsApp</span>
+    <span className={current >= 5 ? 'text-[var(--theme-nav-bg)]' : ''}>Google</span>
     <span>→</span>
-    <span className={current >= 6 ? 'text-navy-900' : ''}>Go Live</span>
+    <span className={current >= 6 ? 'text-[var(--theme-nav-bg)]' : ''}>WhatsApp</span>
+    <span>→</span>
+    <span className={current >= 7 ? 'text-[var(--theme-nav-bg)]' : ''}>AI</span>
+    <span>→</span>
+    <span className={current >= 8 ? 'text-[var(--theme-nav-bg)]' : ''}>Live</span>
   </div>
 );
 
@@ -57,7 +61,7 @@ export const BusinessSetup = () => {
     <div className="min-h-screen bg-app flex flex-col p-6">
       <OnboardingStepper current={1} />
       
-      <h2 className="text-2xl font-heading font-bold text-navy-900 mb-6">Business Details</h2>
+      <h2 className="text-2xl font-heading font-bold text-[var(--theme-nav-bg)] mb-6">Business Details</h2>
       
       <div className="space-y-4 mb-8">
         <div>
@@ -93,7 +97,7 @@ export const BusinessSetup = () => {
       <div className="mt-auto">
         <button 
           onClick={() => navigate('/plans')}
-          className="w-full bg-navy-900 text-white font-bold py-4 rounded-xl text-lg hover:bg-navy-700 transition-colors"
+          className="w-full bg-[var(--theme-nav-bg)] text-white font-bold py-4 rounded-xl text-lg hover:bg-navy-700 transition-colors"
         >
           Continue
         </button>
@@ -107,7 +111,7 @@ export const PlanSelection = () => {
   return (
     <div className="min-h-screen bg-app p-6 flex flex-col">
       <OnboardingStepper current={2} />
-      <h2 className="text-2xl font-heading font-bold text-navy-900 mb-2 text-center mt-2">Choose your plan</h2>
+      <h2 className="text-2xl font-heading font-bold text-[var(--theme-nav-bg)] mb-2 text-center mt-2">Choose your plan</h2>
       <p className="text-gray-500 text-center mb-8">Upgrade or downgrade at any time.</p>
       
       <div className="flex overflow-x-auto gap-4 pb-4 snap-x">
@@ -121,7 +125,7 @@ export const PlanSelection = () => {
       
       <div className="mt-6 bg-navy-50 p-4 rounded-xl border border-navy-100 flex items-center justify-between">
         <div>
-          <h4 className="font-bold text-navy-900 text-sm">Website Add-on</h4>
+          <h4 className="font-bold text-[var(--theme-nav-bg)] text-sm">Website Add-on</h4>
           <p className="text-xs text-gray-500">$149 one-time + $5/mo</p>
         </div>
         <button className="text-xs font-bold bg-white border border-gray-300 px-3 py-1.5 rounded-lg">Add</button>
@@ -130,7 +134,7 @@ export const PlanSelection = () => {
       <div className="mt-8 mb-4">
         <button 
           onClick={() => navigate('/onboarding/website/intro')}
-          className="w-full bg-emerald-500 text-white font-bold py-4 rounded-xl text-lg hover:bg-emerald-600 transition-colors"
+          className="w-full bg-[var(--theme-cta-bg)] text-white font-bold py-4 rounded-xl text-lg hover:bg-[var(--theme-cta-bg)] transition-colors"
         >
           Start 14-Day Free Trial
         </button>

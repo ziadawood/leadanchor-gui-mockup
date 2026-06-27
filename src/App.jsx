@@ -27,10 +27,14 @@ import { WebsiteInterest, TemplatePicker, ContentBuilder, WebsiteLivePreview } f
 import { GBPConnect, GBPProfilePreview, ReviewDashboard } from './screens/GoogleBusiness';
 import { WAConnect, WAWindowsExplainer, WAThreadView, WATemplateLibrary } from './screens/WhatsApp';
 import { AILiveView, WABookingBotView, AIConfig, AIHandoffScreen } from './screens/AIChatbot';
+import { SEOSetup, SEOKeywords, SEOScoreDashboard } from './screens/SEO';
+
+import { useTheme, THEMES } from './context/ThemeContext';
 
 const DemoMode = () => {
   const navigate = useNavigate();
   const [demoStep, setDemoStep] = useState(0);
+  const { theme, setTheme } = useTheme();
 
   const demoPath = [
     { path: '/setup', name: 'Business Setup' },
@@ -39,6 +43,9 @@ const DemoMode = () => {
     { path: '/onboarding/website/template', name: 'Template Picker' },
     { path: '/onboarding/website/content', name: 'Content Builder' },
     { path: '/onboarding/website/preview', name: 'Website Preview' },
+    { path: '/onboarding/seo/setup', name: 'SEO Setup' },
+    { path: '/onboarding/seo/keywords', name: 'SEO Keywords' },
+    { path: '/onboarding/seo/dashboard', name: 'SEO Health' },
     { path: '/onboarding/gbp/connect', name: 'GBP Connect' },
     { path: '/onboarding/gbp/preview', name: 'GBP Preview' },
     { path: '/settings/integrations/whatsapp/connect', name: 'WA Connect' },
@@ -60,26 +67,55 @@ const DemoMode = () => {
     }
   };
 
+  const toggleTheme = (newTheme) => {
+    setTheme(newTheme);
+    // Simple toast mock (could be replaced with a real toast)
+    const toast = document.createElement('div');
+    toast.className = 'fixed top-4 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm z-[200] animate-fade-in-up';
+    toast.innerText = `Switched to ${newTheme === THEMES.PRO ? 'Pro' : 'Starter'} theme`;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      toast.remove();
+    }, 2000);
+  };
+
   const progress = Math.round(((demoStep + 1) / demoPath.length) * 100);
 
   return (
-    <div className="fixed bottom-20 right-4 z-[100] bg-navy-900 text-white p-3 rounded-full shadow-lg flex items-center gap-3 border-2 border-emerald-500 max-w-[280px]">
-      <div className="flex flex-col flex-1 w-full min-w-[150px]">
-        <div className="flex justify-between items-center mb-1">
-          <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Demo Mode</span>
-          <span className="text-[10px] text-gray-400">Step {demoStep + 1} of {demoPath.length}</span>
-        </div>
-        <span className="text-xs truncate mb-1">{demoPath[demoStep]?.name || 'Start Demo'}</span>
-        <div className="w-full bg-navy-700 h-1.5 rounded-full overflow-hidden">
-          <div className="bg-emerald-500 h-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
-        </div>
+    <div className="fixed bottom-20 right-4 z-[100] flex flex-col gap-2 items-end max-w-[280px]">
+      <div className="bg-navy-900 text-white p-2 rounded-full shadow-lg flex items-center gap-2 border border-gray-700 text-xs font-bold">
+        <button 
+          onClick={() => toggleTheme(THEMES.STARTER)}
+          className={`px-3 py-1 rounded-full transition-colors ${theme === THEMES.STARTER ? 'bg-navy-500' : 'hover:bg-navy-700'}`}
+        >
+          STARTER
+        </button>
+        <button 
+          onClick={() => toggleTheme(THEMES.PRO)}
+          className={`px-3 py-1 rounded-full transition-colors ${theme === THEMES.PRO ? 'bg-emerald-500 text-navy-900' : 'hover:bg-emerald-900'}`}
+        >
+          PRO
+        </button>
       </div>
-      <button 
-        onClick={handleNext}
-        className="bg-emerald-500 hover:bg-emerald-600 text-white p-2 rounded-full transition-colors flex items-center justify-center shrink-0"
-      >
-        {demoStep === demoPath.length - 1 ? <CheckCircle className="w-5 h-5" /> : <FastForward className="w-5 h-5" />}
-      </button>
+
+      <div className="bg-navy-900 text-white p-3 rounded-full shadow-lg flex items-center gap-3 border-2 border-emerald-500 w-full">
+        <div className="flex flex-col flex-1 w-full min-w-[150px]">
+          <div className="flex justify-between items-center mb-1">
+            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Demo Mode</span>
+            <span className="text-[10px] text-gray-400">Step {demoStep + 1} of {demoPath.length}</span>
+          </div>
+          <span className="text-xs truncate mb-1">{demoPath[demoStep]?.name || 'Start Demo'}</span>
+          <div className="w-full bg-navy-700 h-1.5 rounded-full overflow-hidden">
+            <div className="bg-emerald-500 h-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
+          </div>
+        </div>
+        <button 
+          onClick={handleNext}
+          className="bg-emerald-500 hover:bg-emerald-600 text-white p-2 rounded-full transition-colors flex items-center justify-center shrink-0"
+        >
+          {demoStep === demoPath.length - 1 ? <CheckCircle className="w-5 h-5" /> : <FastForward className="w-5 h-5" />}
+        </button>
+      </div>
     </div>
   );
 };
@@ -97,6 +133,9 @@ function App() {
         <Route path="/onboarding/website/template" element={<TemplatePicker />} />
         <Route path="/onboarding/website/content" element={<ContentBuilder />} />
         <Route path="/onboarding/website/preview" element={<WebsiteLivePreview />} />
+        <Route path="/onboarding/seo/setup" element={<SEOSetup />} />
+        <Route path="/onboarding/seo/keywords" element={<SEOKeywords />} />
+        <Route path="/onboarding/seo/dashboard" element={<SEOScoreDashboard />} />
         <Route path="/onboarding/gbp/connect" element={<GBPConnect />} />
         <Route path="/onboarding/gbp/preview" element={<GBPProfilePreview />} />
         
