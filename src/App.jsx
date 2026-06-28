@@ -28,6 +28,7 @@ import { GBPConnect, GBPProfilePreview, ReviewDashboard } from './screens/Google
 import { WAConnect, WAWindowsExplainer, WAThreadView, WATemplateLibrary } from './screens/WhatsApp';
 import { AILiveView, WABookingBotView, AIConfig, AIHandoffScreen } from './screens/AIChatbot';
 import { SEOSetup, SEOKeywords, SEOScoreDashboard } from './screens/SEO';
+import { PaymentSettings, CreateInvoice, SendInvoicePreview, CustomerPaymentPage, DepositRequest, InvoiceTracker, PayoutDashboard, PaymentMethodComparison } from './screens/Payments';
 
 import { useTheme, THEMES } from './context/ThemeContext';
 
@@ -49,11 +50,11 @@ const DemoMode = () => {
     { path: '/onboarding/gbp/connect', name: 'GBP Connect' },
     { path: '/onboarding/gbp/preview', name: 'GBP Preview' },
     { path: '/settings/integrations/whatsapp/connect', name: 'WA Connect' },
+    { path: '/settings/payments', name: 'Payment Settings' },
+    { path: '/payments/invoices', name: 'Invoice Tracker' },
     { path: '/dashboard', name: 'Dashboard' },
     { path: '/ai-dispatcher/live', name: 'AI Dispatcher (Live)' },
-    { path: '/ai-dispatcher/whatsapp-booking', name: 'WA Booking Bot' },
-    { path: '/settings/integrations/gbp/reviews', name: 'Review Dashboard' },
-    { path: '/dashboard', name: 'Dashboard (End)' }
+    { path: '/settings/integrations/gbp/reviews', name: 'Review Dashboard' }
   ];
 
   const handleNext = () => {
@@ -153,11 +154,12 @@ function App() {
         
         <Route path="/calendar" element={<AppShell><CalendarView /></AppShell>} />
         <Route path="/calendar/waitlist" element={<AppShell><WaitlistManager /></AppShell>} />
-        <Route path="/calendar/booking/:id" element={<AppShell><DepositPayment /></AppShell>} />
+        <Route path="/calendar/booking/:id" element={<Navigate to="/payments/deposit/new" replace />} />
         <Route path="/calendar/complete/:id" element={<AppShell><AppointmentComplete /></AppShell>} />
         
         <Route path="/settings" element={<AppShell><SettingsHome /></AppShell>} />
         <Route path="/settings/billing" element={<AppShell><PlanBilling /></AppShell>} />
+        <Route path="/settings/payments" element={<AppShell><PaymentSettings /></AppShell>} />
         <Route path="/settings/integrations" element={<AppShell><Integrations /></AppShell>} />
         <Route path="/settings/profile" element={<AppShell><ProfileEdit /></AppShell>} />
         <Route path="/settings/notifications" element={<AppShell><NotificationsSettings /></AppShell>} />
@@ -186,8 +188,17 @@ function App() {
         
         <Route path="/lifecycle/:id" element={<AppShell><MessageLifecycle /></AppShell>} />
         <Route path="/quote/:id" element={<AppShell><QuoteComposer /></AppShell>} />
-        <Route path="/invoice/:id" element={<AppShell><InvoicePayment /></AppShell>} />
+        <Route path="/invoice/:id" element={<Navigate to="/payments/invoice/new" replace />} />
         <Route path="/review/:id" element={<AppShell><ReviewRequest /></AppShell>} />
+        
+        {/* Payment System */}
+        <Route path="/payments/invoice/new" element={<AppShell><CreateInvoice /></AppShell>} />
+        <Route path="/payments/invoice/preview" element={<AppShell><SendInvoicePreview /></AppShell>} />
+        <Route path="/payments/pay/:id" element={<CustomerPaymentPage />} />
+        <Route path="/payments/deposit/new" element={<AppShell><DepositRequest /></AppShell>} />
+        <Route path="/payments/invoices" element={<AppShell><InvoiceTracker /></AppShell>} />
+        <Route path="/payments/payouts" element={<AppShell><PayoutDashboard /></AppShell>} />
+        <Route path="/payments/compare" element={<AppShell><PaymentMethodComparison /></AppShell>} />
         
         <Route path="/error" element={<AppShell><ErrorState /></AppShell>} />
         

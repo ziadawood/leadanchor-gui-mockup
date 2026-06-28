@@ -152,3 +152,58 @@ export const seo = {
   citations: { total: 45, consistent: 42 },
   backlinks: 128
 };
+
+export const payments = {
+  processors: {
+    stripe: {
+      connected: true,
+      accountId: 'acct_mock_123',
+      fees: {
+        onlineCard: { pct: 2.9, fixed: 0.30 },
+        inPerson: { pct: 2.7, fixed: 0.05 },
+        ach: { pct: 0.8, cap: 5.00 },
+        chargeback: 15.00,
+        instantPayout: { pct: 1.0, min: 0.50 }
+      },
+      payoutSchedule: '2_business_days',
+      bankAccount: 'Chase ****4892'
+    },
+    paypal: {
+      connected: false,
+      fees: {
+        online: { pct: 3.49, fixed: 0.49 },
+        chargeback: 20.00,
+        instantPayout: { pct: 1.75 }
+      }
+    },
+    square: {
+      status: 'mvp2_roadmap'
+    }
+  },
+  settings: {
+    passThroughFees: true,
+    includeTax: true,
+    taxRate: 8.25,
+    defaultDueDays: 7,
+    paypalAtCheckout: false
+  },
+  invoices: [
+    { id: 'INV-0047', customer: 'James W.', amount: 293.57, status: 'outstanding', sentDate: '2025-03-14', dueDate: '2025-03-21', paidVia: null },
+    { id: 'INV-0046', customer: 'Sarah T.', amount: 65.00, status: 'paid', sentDate: '2025-03-12', dueDate: '2025-03-19', paidDate: '2025-03-13', paidVia: 'stripe_card' },
+    { id: 'INV-0045', customer: 'Emma L.', amount: 440.00, status: 'overdue', sentDate: '2025-03-10', dueDate: '2025-03-17', daysOverdue: 3, paidVia: null },
+    { id: 'INV-0044', customer: 'Tom R.', amount: 120.00, status: 'paid', sentDate: '2025-03-09', dueDate: '2025-03-16', paidDate: '2025-03-09', paidVia: 'paypal' },
+    { id: 'INV-0043', customer: 'Mike K.', amount: 850.00, status: 'paid', sentDate: '2025-03-07', dueDate: '2025-03-14', paidDate: '2025-03-11', paidVia: 'stripe_ach' },
+    { id: 'INV-0042', customer: null, amount: 0, status: 'draft', createdDate: '2025-03-06' }
+  ],
+  payouts: [
+    { date: '2025-03-13', amount: 840.00, bank: 'Chase ****4892', status: 'completed' },
+    { date: '2025-03-10', amount: 320.00, bank: 'Chase ****4892', status: 'completed' },
+    { date: '2025-03-07', amount: 650.00, bank: 'Chase ****4892', status: 'completed' },
+    { date: '2025-03-03', amount: 1100.00, bank: 'Chase ****4892', status: 'completed' }
+  ],
+  nextPayout: {
+    amount: 1240.00,
+    estimatedDate: '2025-03-17',
+    invoiceCount: 4
+  }
+};

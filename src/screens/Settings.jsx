@@ -13,6 +13,7 @@ export const SettingsHome = () => {
     { id: 'integrations', label: 'Integrations', icon: LinkIcon, path: '/settings/integrations' },
     { id: 'messaging', label: 'Messaging Templates', icon: MessageSquare, path: '/settings/templates' },
     { id: 'billing', label: 'Plan & Billing', icon: CreditCard, path: '/settings/billing' },
+    { id: 'payments', label: 'Payments & payouts', sub: 'Stripe · PayPal · Payout account', icon: CreditCard, path: '/settings/payments' },
   ];
 
   const supportSections = [
@@ -53,7 +54,10 @@ export const SettingsHome = () => {
                   <div className="bg-gray-100 p-2 rounded-lg text-[var(--theme-accent)]">
                     <section.icon className="w-5 h-5" />
                   </div>
-                  <span className="font-semibold text-sm text-[var(--theme-nav-bg)]">{section.label}</span>
+                  <div>
+                    <span className="font-semibold text-sm text-[var(--theme-nav-bg)] block">{section.label}</span>
+                    {section.sub && <span className="text-[10px] text-gray-500 block mt-0.5">{section.sub}</span>}
+                  </div>
                 </div>
                 <ChevronRight className="w-5 h-5 text-gray-400" />
               </div>
@@ -134,6 +138,28 @@ export const PlanBilling = () => {
                 <div className="bg-[var(--theme-accent)] h-2 rounded-full w-[9%]"></div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 ml-2">Payment Methods</h3>
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
+          <div className="mb-4">
+            <h4 className="font-bold text-[var(--theme-nav-bg)] text-sm mb-1">Your plan payment</h4>
+            <p className="text-xs text-gray-600 mb-1">Starter: $45/mo charged to Stripe</p>
+            <p className="text-xs text-gray-500 mb-2">Next billing: Apr 1, 2025</p>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-5 bg-gray-200 rounded flex items-center justify-center text-[8px] font-bold">VISA</div>
+              <span className="text-sm font-semibold text-gray-700">**** 4892</span>
+            </div>
+            <button className="text-xs font-bold text-[var(--theme-accent)] hover:underline">Update payment method</button>
+          </div>
+          
+          <div className="border-t border-gray-100 my-4"></div>
+          
+          <div>
+            <h4 className="font-bold text-[var(--theme-nav-bg)] text-sm mb-1">Payout account</h4>
+            <p className="text-xs text-gray-600 mb-3">Chase ****4892</p>
+            <button className="text-xs font-bold text-[var(--theme-accent)] hover:underline">Manage in Stripe &rarr;</button>
           </div>
         </div>
 

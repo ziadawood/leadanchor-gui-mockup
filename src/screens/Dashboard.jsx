@@ -24,7 +24,17 @@ export const Dashboard = () => {
         <KPICard {...kpis.callsCaptured} />
         <KPICard {...kpis.revenueRecovered} />
         <KPICard {...kpis.leadsActive} />
-        <KPICard {...kpis.reviewsEarned} />
+        <div 
+          onClick={() => navigate('/payments/invoices')}
+          className="bg-card rounded-2xl p-4 border border-[var(--theme-card-border)] shadow-sm cursor-pointer hover:bg-gray-50 transition-colors flex flex-col justify-between"
+        >
+          <p className="text-gray-500 text-xs font-semibold mb-1">Outstanding Invoices</p>
+          <p className="text-2xl font-heading font-bold text-[var(--theme-nav-bg)] mb-2">$780</p>
+          <div className="flex items-center gap-1">
+            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700">2 overdue</span>
+            <span className="text-[10px] text-gray-400 font-semibold ml-1">Current</span>
+          </div>
+        </div>
       </div>
 
       <div className="mb-6">

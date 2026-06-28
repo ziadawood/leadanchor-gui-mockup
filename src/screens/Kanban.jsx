@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PipelineColumn, LeadCard, ChannelTag } from '../components/ui';
 import { leads } from '../data/mock';
-import { Plus, X, ArrowLeft, Phone, FileText, Star, Trash2 } from 'lucide-react';
+import { Plus, X, ArrowLeft, Phone, FileText, Star, Trash2, DollarSign } from 'lucide-react';
 
 export const KanbanBoard = () => {
   const navigate = useNavigate();
@@ -78,41 +78,56 @@ export const LeadDetail = () => {
           <button className="bg-gray-100 p-2 rounded-full text-navy-900"><Phone className="w-5 h-5" /></button>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 mb-6">
-          <button onClick={() => navigate(`/quote/${lead.id}`)} className="bg-white border border-gray-200 p-3 rounded-xl font-semibold text-sm text-navy-700 flex flex-col items-center gap-1 shadow-sm">
-            <FileText className="w-5 h-5 text-navy-500" /> Send Quote
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6">
+          <button onClick={() => navigate(`/quote/${lead.id}`)} className="bg-white border border-gray-200 p-3 rounded-xl font-semibold text-sm text-[var(--theme-nav-bg)] flex flex-col items-center gap-1 shadow-sm hover:bg-gray-50">
+            <FileText className="w-5 h-5 text-[var(--theme-accent)]" /> Send Quote
           </button>
-          <button onClick={() => navigate(`/invoice/${lead.id}`)} className="bg-white border border-gray-200 p-3 rounded-xl font-semibold text-sm text-navy-700 flex flex-col items-center gap-1 shadow-sm">
-            <div className="flex"><FileText className="w-5 h-5 text-emerald-500" /></div> Send Invoice
+          <button onClick={() => navigate(`/payments/deposit/new`)} className="bg-white border border-gray-200 p-3 rounded-xl font-semibold text-sm text-[var(--theme-nav-bg)] flex flex-col items-center gap-1 shadow-sm hover:bg-gray-50">
+            <DollarSign className="w-5 h-5 text-[var(--theme-accent)]" /> Request Deposit
           </button>
-          <button onClick={() => navigate(`/review/${lead.id}`)} className="bg-white border border-gray-200 p-3 rounded-xl font-semibold text-sm text-navy-700 flex flex-col items-center gap-1 shadow-sm">
+          <button onClick={() => navigate(`/payments/invoice/new`)} className="bg-white border border-gray-200 p-3 rounded-xl font-semibold text-sm text-[var(--theme-nav-bg)] flex flex-col items-center gap-1 shadow-sm hover:bg-gray-50">
+            <FileText className="w-5 h-5 text-emerald-500" /> Create Invoice
+          </button>
+          <button onClick={() => navigate(`/review/${lead.id}`)} className="bg-white border border-gray-200 p-3 rounded-xl font-semibold text-sm text-[var(--theme-nav-bg)] flex flex-col items-center gap-1 shadow-sm hover:bg-gray-50">
             <Star className="w-5 h-5 text-amber-400" /> Request Review
-          </button>
-          <button className="bg-white border border-gray-200 p-3 rounded-xl font-semibold text-sm text-red-500 flex flex-col items-center gap-1 shadow-sm">
-            <Trash2 className="w-5 h-5" /> Mark Lost
           </button>
         </div>
 
-        <h3 className="font-bold text-navy-900 text-sm mb-3">Timeline</h3>
+        <h3 className="font-bold text-[var(--theme-nav-bg)] text-sm mb-3">Timeline & Payments</h3>
         <div className="relative border-l-2 border-gray-200 ml-3 pl-5 space-y-6 mb-8">
           <div className="relative">
             <div className="absolute -left-[27px] bg-red-500 w-3 h-3 rounded-full border-2 border-app"></div>
-            <p className="text-sm font-semibold text-navy-900 mb-0.5">Missed Call</p>
+            <p className="text-sm font-semibold text-[var(--theme-nav-bg)] mb-0.5">Missed Call</p>
             <p className="text-xs text-gray-500 mb-2">14 mins ago</p>
             <ChannelTag channel="Call" />
           </div>
           <div className="relative">
-            <div className="absolute -left-[27px] bg-navy-500 w-3 h-3 rounded-full border-2 border-app"></div>
-            <p className="text-sm font-semibold text-navy-900 mb-0.5">AI Reply Sent</p>
+            <div className="absolute -left-[27px] bg-[var(--theme-nav-bg)] w-3 h-3 rounded-full border-2 border-app"></div>
+            <p className="text-sm font-semibold text-[var(--theme-nav-bg)] mb-0.5">AI Reply Sent</p>
             <p className="text-xs text-gray-500 mb-2">13 mins ago</p>
             <ChannelTag channel="RCS" />
           </div>
           <div className="relative">
             <div className="absolute -left-[27px] bg-emerald-500 w-3 h-3 rounded-full border-2 border-app"></div>
-            <p className="text-sm font-semibold text-navy-900 mb-0.5">Customer Webform Submitted</p>
+            <p className="text-sm font-semibold text-[var(--theme-nav-bg)] mb-0.5">Customer Webform Submitted</p>
             <p className="text-xs text-gray-500 mb-2">Just now</p>
-            <div className="bg-white p-3 border border-gray-200 rounded-lg text-sm text-gray-600 mt-2">
+            <div className="bg-white p-3 border border-gray-200 rounded-lg text-sm text-gray-600 mt-2 shadow-sm">
               "Need a quote for boiler service."
+            </div>
+          </div>
+          <div className="relative">
+            <div className="absolute -left-[27px] bg-[var(--theme-accent)] w-3 h-3 rounded-full border-2 border-app"></div>
+            <p className="text-sm font-semibold text-[var(--theme-nav-bg)] mb-0.5">Payments</p>
+            <div className="bg-white p-3 border border-gray-200 rounded-lg mt-2 shadow-sm space-y-2">
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-gray-600">Deposit:</span>
+                <span className="font-semibold text-emerald-600">$50 paid ✅ <span className="text-xs text-gray-400 font-normal ml-1">· Mar 14 · Stripe card</span></span>
+              </div>
+              <div className="border-t border-gray-100 my-1"></div>
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-gray-600">Invoice #INV-0047:</span>
+                <span className="font-semibold text-amber-500">$293.57 outstanding ⚠️</span>
+              </div>
             </div>
           </div>
         </div>

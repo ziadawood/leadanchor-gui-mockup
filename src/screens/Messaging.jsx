@@ -224,20 +224,20 @@ export const ReviewRequest = () => {
 
         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm mb-6">
           <p className="text-xs font-bold text-gray-500 uppercase mb-3">Clubbed Message (RCS)</p>
-          <p className="text-sm text-navy-900 leading-relaxed mb-4">
+          <p className="text-sm text-[var(--theme-nav-bg)] leading-relaxed mb-4">
             "Thanks for choosing Mike's HVAC! ⭐ We'd love a review:<br/>
-            [Leave Google Review →]<br/><br/>
-            Also, your remaining balance of $120 is due:<br/>
-            [Pay Now →]"
+            <span className="text-[var(--theme-accent)] font-bold cursor-pointer hover:underline">[Leave us a Google review &rarr;]</span><br/><br/>
+            Your remaining balance: $243.57 due<br/>
+            <span onClick={() => navigate('/payments/pay/INV-0047')} className="text-emerald-600 font-bold cursor-pointer hover:underline">[Pay $243.57 &rarr;]</span>"
           </p>
-          <div className="bg-blue-50 text-blue-800 text-[10px] p-2 rounded">
-            <strong>Note:</strong> Review + final payment clubbed = 1 send. Saves a message.
+          <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-[10px] text-amber-800 font-semibold text-center">
+            One RCS send for both review + payment
           </div>
         </div>
 
         <button 
           onClick={() => navigate('/dashboard')}
-          className="w-full bg-emerald-500 text-white font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-2 hover:bg-emerald-600 transition-colors mt-auto"
+          className="w-full bg-[var(--theme-cta-bg)] text-[var(--theme-cta-text)] font-bold py-4 rounded-xl shadow-md text-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity mt-auto"
         >
           <Send className="w-5 h-5" /> Send Review + Payment Request
         </button>
