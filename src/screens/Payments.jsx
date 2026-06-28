@@ -616,7 +616,8 @@ export const DepositRequest = () => {
                 Quote: ${quoteTotal} all-in.<br/><br/>
                 Lock your slot with a ${depositAmount.toFixed(2)} deposit:<br/>
                 👉 <span className="text-[var(--theme-accent)] font-bold cursor-pointer hover:underline">Pay ${depositAmount.toFixed(2)} deposit &rarr;</span><br/><br/>
-                Available today 2–4pm or tomorrow 9am. 🗓
+                Available today 2–4pm or tomorrow 9am. 🗓<br/>
+                🌐 mikesplumbing.leadanchor.site
                 <span className="absolute -bottom-6 left-1 text-[10px] text-gray-400 font-bold bg-gray-200 px-2 py-0.5 rounded">RCS</span>
               </div>
             </div>

@@ -33,7 +33,7 @@ export const MessageLifecycle = () => {
               <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Sent</span>
             </div>
             <p className="text-xs text-gray-500 mb-2">14 mins ago</p>
-            <MessagePreview channel="RCS" direction="outbound" text="Thanks! I've sent you a quick form..." />
+            <MessagePreview channel="RCS" direction="outbound" text="Thanks! I've sent you a quick form... 🌐 mikesplumbing.leadanchor.site" />
           </div>
 
           <div className="relative">
@@ -44,7 +44,7 @@ export const MessageLifecycle = () => {
               <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Sent</span>
             </div>
             <p className="text-xs text-gray-500 mb-2">10 mins ago</p>
-            <MessagePreview channel="RCS" direction="outbound" text="Here is your quote for $120..." />
+            <MessagePreview channel="RCS" direction="outbound" text="Here is your quote for $120... 🌐 mikesplumbing.leadanchor.site" />
           </div>
 
           <div className="relative opacity-60">
@@ -124,7 +124,7 @@ export const QuoteComposer = () => {
 
         <div className="mb-6">
           <p className="text-xs font-bold text-gray-500 uppercase mb-2">Message Preview</p>
-          <MessagePreview channel="RCS" direction="outbound" text="Hi James! Here is your quote from Mike's HVAC for $120.00. Tap here to view and accept: [Link]" />
+          <MessagePreview channel="RCS" direction="outbound" text="Hi James! Here is your quote from Mike's HVAC for $120.00. Tap here to view and accept: [Link] 🌐 mikesplumbing.leadanchor.site" />
         </div>
 
         <button 
@@ -228,7 +228,8 @@ export const ReviewRequest = () => {
             "Thanks for choosing Mike's HVAC! ⭐ We'd love a review:<br/>
             <span className="text-[var(--theme-accent)] font-bold cursor-pointer hover:underline">[Leave us a Google review &rarr;]</span><br/><br/>
             Your remaining balance: $243.57 due<br/>
-            <span onClick={() => navigate('/payments/pay/INV-0047')} className="text-emerald-600 font-bold cursor-pointer hover:underline">[Pay $243.57 &rarr;]</span>"
+            <span onClick={() => navigate('/payments/pay/INV-0047')} className="text-emerald-600 font-bold cursor-pointer hover:underline">[Pay $243.57 &rarr;]</span><br/><br/>
+            🌐 mikesplumbing.leadanchor.site"
           </p>
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-[10px] text-amber-800 font-semibold text-center">
             One RCS send for both review + payment

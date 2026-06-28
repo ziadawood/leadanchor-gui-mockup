@@ -7,8 +7,8 @@ export const SettingsHome = () => {
   const navigate = useNavigate();
   
   const sections = [
-    { id: 'account', label: 'Account Profile', icon: User, path: '/settings/profile' },
-    { id: 'business', label: 'Business Details', icon: Briefcase, path: '/setup' },
+    { id: 'trust', label: 'Trust Profile', sub: 'Licensed & Insured · Portfolio', icon: User, path: '/settings/profile/trust' },
+    { id: 'hours', label: 'Business Hours', sub: 'Mon–Fri 8am–6pm, Sat 9am–2pm · Open now ✅', icon: Briefcase, path: '/settings/profile/hours' },
     { id: 'notifications', label: 'Notifications', icon: Bell, path: '/settings/notifications' },
     { id: 'integrations', label: 'Integrations', icon: LinkIcon, path: '/settings/integrations' },
     { id: 'messaging', label: 'Messaging Templates', icon: MessageSquare, path: '/settings/templates' },

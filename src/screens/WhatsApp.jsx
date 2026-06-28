@@ -15,23 +15,23 @@ export const WAConnect = () => {
 
   return (
     <div className="min-h-full bg-app p-4 flex flex-col pb-10">
-      <h1 className="text-2xl font-heading font-bold text-navy-900 mb-1 mt-4">Connect WhatsApp</h1>
-      <p className="text-gray-500 text-sm mb-6">LeadAnchor uses WhatsApp through Telnyx — no separate Meta account needed.</p>
+      <h1 className="text-2xl font-heading font-bold text-navy-900 mb-1 mt-4">Add WhatsApp to your business</h1>
+      <p className="text-gray-500 text-sm mb-6">Let customers reach you on WhatsApp directly from Google, your website, or a link you share. No technical setup required on your end.</p>
       
       <div className="bg-amber-50 rounded-xl border border-amber-200 p-4 mb-6 shadow-sm">
-        <h3 className="font-bold text-amber-900 text-sm mb-3">How WhatsApp works in LeadAnchor</h3>
+        <h3 className="font-bold text-amber-900 text-sm mb-3">3 things to know about WhatsApp</h3>
         <div className="space-y-4">
            <div>
              <h4 className="font-bold text-xs text-amber-900 mb-1">1. PULL only (customer starts it)</h4>
-             <p className="text-xs text-amber-800 leading-relaxed">A missed call CANNOT open a WhatsApp window. Customers must message you first. Three ways this happens: <br/>1. They tap Chat on your Google profile <br/>2. They tap the WhatsApp button on your website <br/>3. They tap a wa.me link you sent via RCS/SMS</p>
+             <p className="text-xs text-amber-800 leading-relaxed">Customers have to message you first. A missed call alone won't open WhatsApp — but once they tap your chat button or link, you can reply freely.</p>
            </div>
            <div>
-             <h4 className="font-bold text-xs text-amber-900 mb-1">2. 24-hour window</h4>
-             <p className="text-xs text-amber-800 leading-relaxed">Once a customer messages, you have 24 hours to reply freely. After that, only approved utility templates can re-open the window.</p>
+             <h4 className="font-bold text-xs text-amber-900 mb-1">2. 24-hour chat window</h4>
+             <p className="text-xs text-amber-800 leading-relaxed">You have a 24-hour chat window. After a customer messages you, you can reply as many times as you like for 24 hours — just like a normal text conversation.</p>
            </div>
            <div>
-             <h4 className="font-bold text-xs text-amber-900 mb-1">3. US marketing block</h4>
-             <p className="text-xs text-amber-800 leading-relaxed">US WhatsApp marketing templates are blocked by Meta (since April 2025). Promos go via SMS/RCS only. WhatsApp is for utility messages only: reminders, confirmations, job updates.</p>
+             <h4 className="font-bold text-xs text-amber-900 mb-1">3. Promos go via text, not WhatsApp</h4>
+             <p className="text-xs text-amber-800 leading-relaxed">Promotional messages go via text, not WhatsApp. WhatsApp is for job updates, reminders, and booking confirmations — not promotions. Promos are sent by SMS instead.</p>
            </div>
         </div>
       </div>
@@ -42,7 +42,7 @@ export const WAConnect = () => {
            <div className="absolute left-[11px] top-6 bottom-[-24px] w-0.5 bg-emerald-200"></div>
            <div className="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 z-10"><CheckCircle className="w-4 h-4" /></div>
            <div>
-              <h4 className="font-bold text-sm text-navy-900">Telnyx number linked</h4>
+              <h4 className="font-bold text-sm text-navy-900">Your business number is ready ✅</h4>
               <p className="text-xs text-gray-500">Auto-completed during business setup</p>
            </div>
         </div>
@@ -51,8 +51,8 @@ export const WAConnect = () => {
            <div className="absolute left-[11px] top-6 bottom-[-24px] w-0.5 bg-emerald-200"></div>
            <div className="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 z-10"><CheckCircle className="w-4 h-4" /></div>
            <div className="flex-1">
-              <h4 className="font-bold text-sm text-navy-900 mb-1">WhatsApp Business API activated</h4>
-              <button className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 opacity-50 cursor-not-allowed">Activated via Telnyx &rarr;</button>
+              <h4 className="font-bold text-sm text-navy-900 mb-1">Turn on WhatsApp for your number</h4>
+              <button className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 opacity-50 cursor-not-allowed">Turn on WhatsApp &rarr;</button>
            </div>
         </div>
         
@@ -60,11 +60,11 @@ export const WAConnect = () => {
            <div className="absolute left-[11px] top-6 bottom-[-24px] w-0.5 bg-gray-200"></div>
            <div className="w-6 h-6 rounded-full bg-navy-900 text-white flex items-center justify-center shrink-0 z-10 text-xs font-bold">3</div>
            <div className="flex-1 w-full">
-              <h4 className="font-bold text-sm text-navy-900 mb-1">wa.me link generated</h4>
+              <h4 className="font-bold text-sm text-navy-900 mb-1">Your WhatsApp chat link is ready</h4>
               <div className="flex items-center gap-2">
                  <div className="flex-1 bg-gray-50 border border-gray-200 rounded px-2 py-1.5 text-xs text-gray-600 truncate">{whatsapp.waMeLink}</div>
                  <button onClick={handleCopy} className="bg-navy-100 text-navy-700 text-xs font-bold px-3 py-1.5 rounded hover:bg-navy-200 transition-colors whitespace-nowrap">
-                    {copied ? 'Copied!' : 'Copy Link'}
+                    {copied ? 'Copied!' : 'Copy your chat link'}
                  </button>
               </div>
            </div>
@@ -73,7 +73,7 @@ export const WAConnect = () => {
         <div className="flex gap-3">
            <div className="w-6 h-6 rounded-full bg-navy-900 text-white flex items-center justify-center shrink-0 z-10 text-xs font-bold">4</div>
            <div className="flex-1">
-              <h4 className="font-bold text-sm text-navy-900 mb-2">Add to website + Google profile</h4>
+              <h4 className="font-bold text-sm text-navy-900 mb-2">Add the chat button to your website and Google listing</h4>
               <div className="flex gap-2">
                  <button onClick={() => navigate('/settings')} className="text-[10px] font-bold text-gray-700 bg-gray-100 px-2 py-1.5 rounded-lg border border-gray-200">Go to Website Settings</button>
                  <button onClick={() => navigate('/settings/integrations/gbp/reviews')} className="text-[10px] font-bold text-gray-700 bg-gray-100 px-2 py-1.5 rounded-lg border border-gray-200">Go to GBP Settings</button>

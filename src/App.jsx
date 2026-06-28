@@ -29,6 +29,10 @@ import { WAConnect, WAWindowsExplainer, WAThreadView, WATemplateLibrary } from '
 import { AILiveView, WABookingBotView, AIConfig, AIHandoffScreen } from './screens/AIChatbot';
 import { SEOSetup, SEOKeywords, SEOScoreDashboard } from './screens/SEO';
 import { PaymentSettings, CreateInvoice, SendInvoicePreview, CustomerPaymentPage, DepositRequest, InvoiceTracker, PayoutDashboard, PaymentMethodComparison } from './screens/Payments';
+import { HostedProfile } from './screens/HostedProfile';
+import { BusinessProfileSetup } from './screens/ProfileSetup';
+import { BusinessHoursSettings } from './screens/SettingsHours';
+import { AIFaqSetup } from './screens/AIFaqSetup';
 
 import { useTheme, THEMES } from './context/ThemeContext';
 
@@ -40,6 +44,8 @@ const DemoMode = () => {
   const demoPath = [
     { path: '/setup', name: 'Business Setup' },
     { path: '/plans', name: 'Plan Selection' },
+    { path: '/onboarding/profile', name: 'Trust Profile Setup' },
+    { path: '/onboarding/ai/faq', name: 'AI FAQ Setup' },
     { path: '/onboarding/website/intro', name: 'Website Interest' },
     { path: '/onboarding/website/template', name: 'Template Picker' },
     { path: '/onboarding/website/content', name: 'Content Builder' },
@@ -54,7 +60,8 @@ const DemoMode = () => {
     { path: '/payments/invoices', name: 'Invoice Tracker' },
     { path: '/dashboard', name: 'Dashboard' },
     { path: '/ai-dispatcher/live', name: 'AI Dispatcher (Live)' },
-    { path: '/settings/integrations/gbp/reviews', name: 'Review Dashboard' }
+    { path: '/settings/integrations/gbp/reviews', name: 'Review Dashboard' },
+    { path: '/p/mikes-hvac', name: 'Hosted Trust Profile' }
   ];
 
   const handleNext = () => {
@@ -128,6 +135,9 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/setup" element={<BusinessSetup />} />
         <Route path="/plans" element={<PlanSelection />} />
+        <Route path="/onboarding/profile" element={<BusinessProfileSetup />} />
+        <Route path="/onboarding/ai/faq" element={<AIFaqSetup />} />
+        <Route path="/p/:slug" element={<HostedProfile />} />
         
         {/* New Onboarding Flows */}
         <Route path="/onboarding/website/intro" element={<WebsiteInterest />} />
@@ -162,6 +172,8 @@ function App() {
         <Route path="/settings/payments" element={<AppShell><PaymentSettings /></AppShell>} />
         <Route path="/settings/integrations" element={<AppShell><Integrations /></AppShell>} />
         <Route path="/settings/profile" element={<AppShell><ProfileEdit /></AppShell>} />
+        <Route path="/settings/profile/trust" element={<AppShell><BusinessProfileSetup /></AppShell>} />
+        <Route path="/settings/profile/hours" element={<AppShell><BusinessHoursSettings /></AppShell>} />
         <Route path="/settings/notifications" element={<AppShell><NotificationsSettings /></AppShell>} />
         <Route path="/settings/templates" element={<AppShell><Templates /></AppShell>} />
         <Route path="/settings/faq" element={<AppShell><FAQ /></AppShell>} />

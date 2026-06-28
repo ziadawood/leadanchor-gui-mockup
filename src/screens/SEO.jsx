@@ -6,74 +6,73 @@ import { Search, MapPin, CheckCircle, TrendingUp, ChevronRight, BarChart2, Star,
 
 export const SEOSetup = () => {
   const navigate = useNavigate();
-  const [analyzing, setAnalyzing] = useState(false);
-  const [done, setDone] = useState(false);
-
-  const startAnalysis = () => {
-    setAnalyzing(true);
-    setTimeout(() => {
-      setAnalyzing(false);
-      setDone(true);
-      setTimeout(() => {
-        navigate('/onboarding/seo/keywords');
-      }, 1000);
-    }, 2000);
-  };
-
+  const { theme } = useTheme();
+  
   return (
-    <div className="min-h-full bg-app flex flex-col items-center justify-center p-6 text-center">
-      <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
-        <Search className="w-8 h-8" />
-      </div>
-      <h1 className="text-2xl font-heading font-bold text-[var(--theme-nav-bg)] mb-3">Local SEO Setup</h1>
-      <p className="text-gray-500 mb-8 max-w-sm">
-        Let's optimize your business for local searches so customers can find you before your competitors.
-      </p>
-
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 w-full max-w-sm mb-8 text-left">
-        <h3 className="font-bold text-[var(--theme-nav-bg)] mb-4 flex items-center gap-2">
-          <MapPin className="w-4 h-4 text-[var(--theme-accent)]" /> What we'll do:
-        </h3>
-        <ul className="space-y-3">
-          <li className="flex items-start gap-2 text-sm text-gray-600">
-            <CheckCircle className="w-4 h-4 text-[var(--theme-cta-bg)] shrink-0 mt-0.5" />
-            Scan local directories for your business
-          </li>
-          <li className="flex items-start gap-2 text-sm text-gray-600">
-            <CheckCircle className="w-4 h-4 text-[var(--theme-cta-bg)] shrink-0 mt-0.5" />
-            Identify missing high-value keywords
-          </li>
-          <li className="flex items-start gap-2 text-sm text-gray-600">
-            <CheckCircle className="w-4 h-4 text-[var(--theme-cta-bg)] shrink-0 mt-0.5" />
-            Generate a local schema markup
-          </li>
-        </ul>
+    <div className="min-h-full bg-app flex flex-col p-6">
+      <div className="flex flex-col items-center mb-8 mt-4">
+        <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+          <Search className="w-8 h-8" />
+        </div>
+        <h1 className="text-2xl font-heading font-bold text-[var(--theme-nav-bg)] mb-2 text-center">Local SEO Setup</h1>
+        <p className="text-gray-500 text-center max-w-sm">
+          Make sure customers can find your business when they search locally.
+        </p>
       </div>
 
-      <button 
-        onClick={startAnalysis}
-        disabled={analyzing || done}
-        className="w-full max-w-sm bg-[var(--theme-cta-bg)] text-[var(--theme-cta-text)] font-bold py-4 rounded-xl shadow-md transition-all hover:opacity-90 flex items-center justify-center gap-2"
-      >
-        {analyzing ? (
-          <>
-            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[var(--theme-cta-text)]"></div>
-            Analyzing Local Presence...
-          </>
-        ) : done ? (
-          <>
-            <CheckCircle className="w-5 h-5" /> Analysis Complete!
-          </>
-        ) : (
-          'Run Local SEO Audit'
+      <div className="space-y-4 mb-8">
+        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+          <div className="flex gap-3">
+             <div className="w-8 h-8 bg-emerald-100 rounded flex items-center justify-center text-emerald-600 shrink-0"><CheckCircle className="w-4 h-4" /></div>
+             <div>
+                <h3 className="font-bold text-[var(--theme-nav-bg)] mb-1">Basic Local Listing (Active)</h3>
+                <p className="text-xs text-gray-500 leading-relaxed">Your basic business info is submitted to standard local directories to help customers find you.</p>
+             </div>
+          </div>
+        </div>
+
+        {theme === THEMES.STARTER && (
+          <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 opacity-75">
+            <div className="flex justify-between items-start mb-2">
+              <div className="flex gap-3">
+                 <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center text-gray-500 shrink-0"><TrendingUp className="w-4 h-4" /></div>
+                 <div>
+                    <h3 className="font-bold text-gray-700 mb-1">Advanced Local SEO</h3>
+                    <p className="text-xs text-gray-500 leading-relaxed">Keyword tracking, smart schema generation, and competitive local rank scanning.</p>
+                 </div>
+              </div>
+              <div className="bg-gray-200 text-gray-500 text-[10px] font-bold px-2 py-1 rounded">PRO</div>
+            </div>
+            <div className="mt-3 pl-11">
+              <button onClick={() => navigate('/plans')} className="text-xs font-bold text-blue-600 hover:underline">Upgrade to Pro to unlock &rarr;</button>
+            </div>
+          </div>
         )}
-      </button>
-      
-      {!analyzing && !done && (
-        <button onClick={() => navigate('/dashboard')} className="mt-4 text-sm font-semibold text-gray-400">
-          Skip for now
+        
+        {theme === THEMES.PRO && (
+          <div className="bg-white p-4 rounded-xl shadow-sm border border-blue-200 cursor-pointer hover:bg-blue-50 transition-colors" onClick={() => navigate('/onboarding/seo/dashboard')}>
+            <div className="flex justify-between items-center">
+              <div className="flex gap-3">
+                 <div className="w-8 h-8 bg-blue-100 rounded flex items-center justify-center text-blue-600 shrink-0"><TrendingUp className="w-4 h-4" /></div>
+                 <div>
+                    <h3 className="font-bold text-blue-900 mb-1">Advanced Local SEO</h3>
+                    <p className="text-xs text-blue-700/80 leading-relaxed">Manage your tracked keywords, schema settings, and local rankings dashboard.</p>
+                 </div>
+              </div>
+              <ChevronRight className="w-5 h-5 text-blue-300" />
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-auto">
+        <button 
+          onClick={() => navigate('/dashboard')}
+          className="w-full bg-[var(--theme-cta-bg)] text-[var(--theme-cta-text)] font-bold py-4 rounded-xl text-lg hover:opacity-90 transition-all shadow-md"
+        >
+          Continue
         </button>
-      )}
+      </div>
     </div>
   );
 };

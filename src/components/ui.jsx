@@ -168,7 +168,10 @@ export const PlanCard = ({ tier, price, recommended, features, selected, onSelec
             ) : (
               <Lock className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
             )}
-            <span className={f.included ? 'text-gray-700' : 'text-gray-400'}>{f.name}</span>
+            <div>
+              <span className={f.included ? 'text-gray-700' : 'text-gray-400'}>{f.name}</span>
+              {f.subNote && <div className="text-[10px] text-gray-500 mt-0.5 leading-tight">{f.subNote}</div>}
+            </div>
           </li>
         ))}
       </ul>

@@ -46,38 +46,180 @@ export const KanbanBoard = () => {
   );
 };
 
+import { IssueTypeDropdown } from '../components/profile';
+import { Camera, MapPin, AlertCircle, MessageSquare } from 'lucide-react';
+
 export const LeadDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const lead = leads.find(l => l.id === id) || leads[0]; // fallback
+  
+  const [editMode, setEditMode] = useState(false);
+  const [formData, setFormData] = useState({ ...lead });
 
   return (
-    <div className="min-h-full bg-app flex flex-col">
-      <div className="bg-white border-b border-gray-200 p-4 sticky top-0 z-10 flex items-center gap-3">
-        <button onClick={() => navigate(-1)} className="p-2 -ml-2 rounded-full hover:bg-gray-100 text-gray-500">
-          <ArrowLeft className="w-5 h-5" />
-        </button>
-        <div className="flex-1">
-          <h1 className="font-heading font-bold text-lg text-navy-900">{lead.name}</h1>
-          <p className="text-sm text-gray-500">{lead.phone}</p>
+    <div className="min-h-full bg-app flex flex-col pb-10">
+      <div className="bg-white border-b border-gray-200 p-4 sticky top-0 z-10 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <button onClick={() => navigate(-1)} className="p-2 -ml-2 rounded-full hover:bg-gray-100 text-gray-500">
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          <span className="font-heading font-bold text-lg text-navy-900">Lead Details</span>
         </div>
-        {lead.returning && <span className="bg-navy-100 text-navy-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase">Returning</span>}
+        <button 
+          onClick={() => setEditMode(!editMode)} 
+          className={`text-xs font-bold px-3 py-1.5 rounded-lg border ${editMode ? 'bg-navy-900 text-white border-navy-900' : 'bg-white text-navy-700 border-gray-200 hover:bg-gray-50'}`}
+        >
+          {editMode ? 'Save Changes' : 'Edit Lead'}
+        </button>
       </div>
 
-      <div className="p-4">
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-navy-500 text-white flex items-center justify-center font-bold text-lg">
-              {lead.initials}
+      <div className="p-4 space-y-6">
+        {/* Customer Details Section */}
+        <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+          <div className="flex justify-between items-center mb-4 pb-3 border-b border-gray-100">
+             <div className="flex items-center gap-3">
+               <div className="w-10 h-10 rounded-full bg-navy-500 text-white flex items-center justify-center font-bold text-lg shrink-0">
+                 {lead.initials}
+               </div>
+               <div>
+                 <div className="font-bold text-navy-900">{lead.stage}</div>
+                 <div className="text-xs text-gray-500">Source: {lead.source}</div>
+               </div>
+             </div>
+             {lead.returning && <span className="bg-navy-100 text-navy-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase shrink-0">Returning</span>}
+          </div>
+          
+          <h3 className="font-bold text-sm text-navy-900 mb-3">Customer Details</h3>
+          <div className="space-y-3">
+            <div>
+              <label className="block text-xs font-semibold text-gray-500 mb-1">Full Name</label>
+              {editMode ? (
+                <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full border border-gray-300 rounded p-2 text-sm focus:border-navy-500 outline-none" />
+              ) : (
+                <p className="text-sm font-medium text-gray-900">{formData.name}</p>
+              )}
             </div>
             <div>
-              <div className="font-bold text-navy-900">{lead.stage}</div>
-              <div className="text-xs text-gray-500">Source: {lead.source}</div>
+              <label className="block text-xs font-semibold text-gray-500 mb-1">Phone</label>
+              {editMode ? (
+                <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full border border-gray-300 rounded p-2 text-sm focus:border-navy-500 outline-none" />
+              ) : (
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium text-gray-900">{formData.phone}</p>
+                  <button className="bg-gray-100 p-1.5 rounded-full text-navy-900"><Phone className="w-4 h-4" /></button>
+                </div>
+              )}
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-500 mb-1">Email</label>
+              {editMode ? (
+                <input type="email" value={formData.email || ''} placeholder="customer@example.com" onChange={e => setFormData({...formData, email: e.target.value})} className="w-full border border-gray-300 rounded p-2 text-sm focus:border-navy-500 outline-none" />
+              ) : (
+                <p className="text-sm font-medium text-gray-900">{formData.email || 'Not provided'}</p>
+              )}
             </div>
           </div>
-          <button className="bg-gray-100 p-2 rounded-full text-navy-900"><Phone className="w-5 h-5" /></button>
         </div>
 
+        {/* Job Details Section */}
+        <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+          <h3 className="font-bold text-sm text-navy-900 mb-3">Job Details</h3>
+          <div className="space-y-3">
+             <div>
+               <label className="block text-xs font-semibold text-gray-500 mb-1">Service Type</label>
+               {editMode ? (
+                 <input type="text" value={formData.serviceType || ''} placeholder="e.g. Plumbing, HVAC" onChange={e => setFormData({...formData, serviceType: e.target.value})} className="w-full border border-gray-300 rounded p-2 text-sm focus:border-navy-500 outline-none" />
+               ) : (
+                 <p className="text-sm font-medium text-gray-900">{formData.serviceType || 'Not specified'}</p>
+               )}
+             </div>
+             
+             {editMode ? (
+               <IssueTypeDropdown value={formData.issueType} onChange={(val) => setFormData({...formData, issueType: val})} />
+             ) : (
+               <div>
+                 <label className="block text-xs font-semibold text-gray-500 mb-1">Issue Type</label>
+                 <p className="text-sm font-medium text-gray-900">{formData.issueType || 'Uncategorized'}</p>
+               </div>
+             )}
+             
+             <div>
+               <label className="block text-xs font-semibold text-gray-500 mb-1">Issue Description</label>
+               {editMode ? (
+                 <textarea value={formData.issueDescription || ''} onChange={e => setFormData({...formData, issueDescription: e.target.value})} className="w-full border border-gray-300 rounded p-2 text-sm focus:border-navy-500 outline-none min-h-[80px]" placeholder="Detailed description of the problem..." />
+               ) : (
+                 <p className="text-sm font-medium text-gray-900 bg-gray-50 p-2 rounded">{formData.issueDescription || 'No description provided'}</p>
+               )}
+             </div>
+             
+             <div>
+               <label className="block text-xs font-semibold text-gray-500 mb-1">Job Address</label>
+               {editMode ? (
+                 <div className="flex gap-2">
+                   <div className="w-10 h-10 bg-gray-100 rounded flex items-center justify-center shrink-0"><MapPin className="w-5 h-5 text-gray-400" /></div>
+                   <input type="text" value={formData.address || ''} placeholder="123 Main St, City, ST 12345" onChange={e => setFormData({...formData, address: e.target.value})} className="w-full border border-gray-300 rounded p-2 text-sm focus:border-navy-500 outline-none" />
+                 </div>
+               ) : (
+                 <div className="flex items-start gap-2">
+                   <MapPin className="w-4 h-4 text-gray-400 mt-0.5" />
+                   <p className="text-sm font-medium text-gray-900">{formData.address || 'Address not provided'}</p>
+                 </div>
+               )}
+             </div>
+             
+             <div className="grid grid-cols-2 gap-3 pt-2">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1">Priority</label>
+                  {editMode ? (
+                    <select value={formData.priority || 'standard'} onChange={e => setFormData({...formData, priority: e.target.value})} className="w-full border border-gray-300 rounded p-2 text-sm focus:border-navy-500 outline-none">
+                      <option value="low">Low</option>
+                      <option value="standard">Standard</option>
+                      <option value="high">High</option>
+                      <option value="emergency">Emergency</option>
+                    </select>
+                  ) : (
+                    <div className="flex items-center gap-1.5">
+                      <AlertCircle className={`w-3.5 h-3.5 ${formData.priority === 'emergency' || formData.priority === 'high' ? 'text-red-500' : 'text-emerald-500'}`} />
+                      <span className="text-sm font-medium capitalize text-gray-900">{formData.priority || 'Standard'}</span>
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1">Preferred Contact</label>
+                  {editMode ? (
+                    <select value={formData.preferredContact || 'phone'} onChange={e => setFormData({...formData, preferredContact: e.target.value})} className="w-full border border-gray-300 rounded p-2 text-sm focus:border-navy-500 outline-none">
+                      <option value="phone">Phone Call</option>
+                      <option value="sms">Text / SMS</option>
+                      <option value="whatsapp">WhatsApp</option>
+                      <option value="email">Email</option>
+                    </select>
+                  ) : (
+                    <div className="flex items-center gap-1.5">
+                      <MessageSquare className="w-3.5 h-3.5 text-blue-500" />
+                      <span className="text-sm font-medium capitalize text-gray-900">{formData.preferredContact || 'Phone Call'}</span>
+                    </div>
+                  )}
+                </div>
+             </div>
+             
+             <div className="pt-2">
+               <label className="block text-xs font-semibold text-gray-500 mb-2">Photos & Attachments</label>
+               {editMode ? (
+                 <button className="w-full bg-gray-50 border-2 border-dashed border-gray-300 text-gray-500 font-semibold py-4 rounded-lg flex items-center justify-center gap-2 text-sm hover:bg-gray-100">
+                   <Camera className="w-5 h-5" /> Upload Photos
+                 </button>
+               ) : (
+                 <div className="flex gap-2">
+                   <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"><Camera className="w-6 h-6 text-gray-400" /></div>
+                   <div className="w-16 h-16 bg-gray-50 border border-dashed border-gray-300 rounded-lg flex items-center justify-center"><Plus className="w-4 h-4 text-gray-400" /></div>
+                 </div>
+               )}
+             </div>
+          </div>
+        </div>
+
+        {/* Quick Actions */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6">
           <button onClick={() => navigate(`/quote/${lead.id}`)} className="bg-white border border-gray-200 p-3 rounded-xl font-semibold text-sm text-[var(--theme-nav-bg)] flex flex-col items-center gap-1 shadow-sm hover:bg-gray-50">
             <FileText className="w-5 h-5 text-[var(--theme-accent)]" /> Send Quote
@@ -93,6 +235,7 @@ export const LeadDetail = () => {
           </button>
         </div>
 
+        {/* Timeline & Payments */}
         <h3 className="font-bold text-[var(--theme-nav-bg)] text-sm mb-3">Timeline & Payments</h3>
         <div className="relative border-l-2 border-gray-200 ml-3 pl-5 space-y-6 mb-8">
           <div className="relative">

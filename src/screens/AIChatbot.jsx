@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, MessageSquare, ShieldAlert, Phone, FileText, XCircle, CheckCircle, Smartphone } from 'lucide-react';
 import { AIMessageBubble, ChannelTag } from '../components/ui';
+import { ProfileCard, FAQEditor } from '../components/profile';
+import { aiFAQs } from '../data/mock';
 
 export const AILiveView = () => {
   const navigate = useNavigate();
@@ -30,12 +32,17 @@ export const AILiveView = () => {
             <p className="text-[10px] text-gray-400 mt-1">11:41 AM</p>
           </div>
 
-          <AIMessageBubble 
-            sender="ai" 
-            channel="RCS" 
-            text="Hi! I'm the assistant for Mike's Plumbing. Mike's on a job right now — I can text you a quick link to get the ball rolling. What can we help you with today?" 
-            timestamp="11:41 AM" 
-          />
+          <div className="flex flex-col gap-2">
+            <AIMessageBubble 
+              sender="ai" 
+              channel="RCS" 
+              text="Hi! I'm the assistant for Mike's Plumbing. Mike's on a job right now — I can text you a quick link to get the ball rolling. What can we help you with today? 🌐 mikesplumbing.leadanchor.site" 
+              timestamp="11:41 AM" 
+            />
+            <div className="ml-10">
+              <ProfileCard businessName="Mike's Plumbing" slug="mikes-plumbing" />
+            </div>
+          </div>
 
           <AIMessageBubble sender="customer" channel="RCS" text="Burst pipe under my kitchen sink, need help ASAP" timestamp="11:42 AM" />
 
@@ -215,6 +222,15 @@ export const AIConfig = () => {
       </div>
       
       <div className="p-4 space-y-6">
+         {/* Section 0 - FAQ */}
+         <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm space-y-3">
+            <div>
+              <h3 className="font-bold text-sm text-navy-900 mb-1">Teach your AI assistant</h3>
+              <p className="text-xs text-gray-500 mb-4">Your AI uses these answers to handle customer questions automatically. The more you add, the smarter it gets.</p>
+            </div>
+            <FAQEditor faqs={aiFAQs} />
+         </div>
+
          {/* Section 1 */}
          <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm space-y-3">
             <h3 className="font-bold text-sm text-navy-900 border-b border-gray-100 pb-2 mb-2">Identity</h3>

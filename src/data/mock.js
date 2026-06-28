@@ -6,14 +6,62 @@ export const kpis = {
 };
 
 export const leads = [
-  { id: '1', name: 'James W.', initials: 'JW', phone: '07123456789', stage: 'NEW', channel: 'RCS', time: '14 min ago', callType: 'missed', lastMessage: 'Need a quote for boiler service', value: null, returning: false, source: 'Missed Call' },
-  { id: '2', name: 'Sarah T.', initials: 'ST', phone: '07234567890', stage: 'QUOTED', channel: 'WhatsApp', time: '2 hours ago', callType: 'answered', lastMessage: 'Thanks, I will review the quote.', value: '$120', returning: true, source: 'Missed Call' },
-  { id: '3', name: 'Mike P.', initials: 'MP', phone: '07345678901', stage: 'AWAITING PAYMENT', channel: 'Email', time: '1 day ago', callType: 'answered', lastMessage: 'Invoice #1024 sent', value: '$350', returning: false, source: 'Website' },
-  { id: '4', name: 'Emma L.', initials: 'EL', phone: '07456789012', stage: 'COMPLETE', channel: 'RCS', time: '2 days ago', callType: 'missed', lastMessage: 'Review request sent', value: '$85', returning: false, source: 'Missed Call' },
-  { id: '5', name: 'Tom R.', initials: 'TR', phone: '07567890123', stage: 'LOST', channel: 'SMS', time: '1 week ago', callType: 'missed', lastMessage: 'Went with another company', value: null, returning: false, source: 'Walk-in' },
-  { id: '6', name: 'David B.', initials: 'DB', phone: '07678901234', stage: 'NEW', channel: 'WhatsApp', time: '1 hour ago', callType: 'missed', lastMessage: 'Webform link sent', value: null, returning: false, source: 'Missed Call' },
-  { id: '7', name: 'Chloe S.', initials: 'CS', phone: '07789012345', stage: 'QUOTED', channel: 'Email', time: '3 hours ago', callType: 'answered', lastMessage: 'Quote sent for AC repair', value: '$250', returning: false, source: 'Referral' },
-  { id: '8', name: 'Liam K.', initials: 'LK', phone: '07890123456', stage: 'AWAITING PAYMENT', channel: 'RCS', time: '5 hours ago', callType: 'answered', lastMessage: 'Invoice #1025 sent', value: '$150', returning: true, source: 'Missed Call' }
+  {
+    id: 'lead-001',
+    name: 'James W.',
+    initials: 'JW',
+    phone: '(214) 555-0199',
+    email: 'james.w@email.com',
+    photo: null,       // null = show initials
+    serviceType: 'Plumbing',
+    issueType: 'Burst pipe',
+    issueDescription: 'Burst pipe under kitchen sink, urgent',
+    address: {
+      street: '45 Oak Lane',
+      city: 'Austin',
+      state: 'TX',
+      zip: '78701'
+    },
+    priority: 'emergency',
+    preferredContact: ['SMS', 'Call'],
+    stage: 'NEW',
+    source: 'Missed Call',
+    websiteShownInMessages: true,
+    channel: 'RCS',
+    time: '14 min ago',
+    callType: 'missed',
+    lastMessage: 'Need a quote for boiler service',
+    value: null,
+    returning: false
+  },
+  {
+    id: 'lead-002',
+    name: 'Sarah T.',
+    initials: 'ST',
+    phone: '(214) 555-0200',
+    email: 'sarah.t@email.com',
+    photo: null,
+    serviceType: 'HVAC',
+    issueType: 'AC not cooling',
+    issueDescription: 'AC is blowing warm air.',
+    address: {
+      street: '123 Main St',
+      city: 'Austin',
+      state: 'TX',
+      zip: '78702'
+    },
+    priority: 'standard',
+    preferredContact: ['SMS'],
+    stage: 'QUOTED',
+    source: 'Website',
+    websiteShownInMessages: true,
+    channel: 'WhatsApp',
+    time: '2 hours ago',
+    callType: 'answered',
+    lastMessage: 'Thanks, I will review the quote.',
+    value: '$120',
+    returning: true
+  }
 ];
 
 export const messages = [
@@ -55,8 +103,9 @@ export const plans = {
       { name: 'Payment links (pass-through fees)', included: true },
       { name: 'GBP integration', included: true },
       { name: 'Quote + invoice composer', included: true },
+      { name: 'Basic local listing setup', included: true },
       { name: 'Calendar sync (Pro)', included: false },
-      { name: 'WhatsApp (Pro)', included: false },
+      { name: 'WhatsApp (when customer starts the chat)', included: true, subNote: 'Customer taps your chat button → window opens → you reply freely for 24 hours. You cannot initiate.' },
       { name: 'Waitlist & rebook (Pro)', included: false }
     ]
   },
@@ -65,9 +114,10 @@ export const plans = {
     price: 105,
     features: [
       { name: 'Calendar sync (Google / Apple)', included: true },
-      { name: 'WhatsApp utility templates', included: true },
+      { name: 'WhatsApp — full template library', included: true, subNote: 'Re-open closed windows with pre-approved appointment, payment, and reminder templates' },
       { name: 'Booking deposits', included: true },
       { name: 'Cancellation waitlist', included: true },
+      { name: 'Advanced local SEO', included: true },
       { name: 'Retention campaigns (MVP2)', included: true },
       { name: 'Advanced analytics', included: true }
     ]
@@ -206,4 +256,53 @@ export const payments = {
     estimatedDate: '2025-03-17',
     invoiceCount: 4
   }
+};
+
+export const trustProfile = {
+  businessName: "Mike's Plumbing",
+  slug: 'mikes-plumbing',
+  tagline: 'Trusted plumber serving Austin since 2019',
+  yearsInBusiness: 5,
+  licenseNumber: 'TX-PLB-12345',
+  licenseType: 'Plumber',
+  licenseState: 'TX',
+  insuranceCarrier: 'Hiscox',
+  coverageTypes: ['General Liability'],
+  selfAttestedDisclaimer: 'As stated by the business owner',
+  gallery: [
+    { id: 1, caption: 'Boiler replacement job', public: true },
+    { id: 2, caption: 'Bathroom refit', public: true },
+    { id: 3, caption: 'Emergency leak repair', public: true }
+  ],
+  autoAttachToFirstMessage: true,
+  jobsCompleted: 127
+};
+
+export const aiFAQs = [
+  { q: 'What areas do you serve?',
+    a: 'We serve Austin and surrounding areas within 25 miles.' },
+  { q: 'How quickly can you come out?',
+    a: 'Within 2 hours for non-emergencies, same day for emergencies.' },
+  { q: 'Do you provide free quotes?',
+    a: 'Yes — all quotes are free with no obligation.' },
+  { q: 'Are you licensed and insured?',
+    a: 'Yes — fully licensed TX-PLB-12345 and insured with Hiscox.' },
+  { q: 'What payment methods do you accept?',
+    a: 'All major cards, bank transfer, and PayPal.' }
+];
+
+export const businessHours = {
+  open247: false,
+  hours: {
+    monday:    { open: true,  from: '08:00', to: '18:00' },
+    tuesday:   { open: true,  from: '08:00', to: '18:00' },
+    wednesday: { open: true,  from: '08:00', to: '18:00' },
+    thursday:  { open: true,  from: '08:00', to: '18:00' },
+    friday:    { open: true,  from: '08:00', to: '17:00' },
+    saturday:  { open: true,  from: '09:00', to: '14:00' },
+    sunday:    { open: false, from: null,    to: null    }
+  },
+  specialHours: [
+    { date: '2025-11-27', label: 'Thanksgiving', closed: true }
+  ]
 };
